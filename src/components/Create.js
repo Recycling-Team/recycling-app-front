@@ -1,5 +1,4 @@
 import { useState, Button } from 'react';
-  
 
 
 function Create() {
@@ -17,25 +16,22 @@ function Create() {
         console.log(item);
     }
 
-
     return (
-        <div>
+        <div className="body">
             <form onSubmit={save}>
                 <p>name:</p>
-                <input 
+                <input
                 name="name"
                 value={item.name}
                 onChange={e => handleInputChange(e)}
                 />
                 <p>description:</p>
-                <input 
+                <input
                 name="description"
                 value={item.description}
                 onChange={e => handleInputChange(e)}
                 />
-
                 <input type="submit" value="Submit" />
-                
             </form>
         </div>
     )
