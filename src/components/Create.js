@@ -12,7 +12,8 @@ function Create() {
         setItem({...item, [event.target.name]: event.target.value});
     }
     
-    const save = () => {
+    const save = (event) => {
+        event.preventDefault();
         console.log(item);
     }
 
