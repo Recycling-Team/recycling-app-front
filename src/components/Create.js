@@ -1,4 +1,9 @@
-import { useState, Button } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import React from 'react';
+import { Button } from '@mui/material';
+
+
 
 
 function Create() {
@@ -33,6 +38,7 @@ function Create() {
                 />
                 <input type="submit" value="Submit" />
             </form>
+            <Link to="/"><Button variant='contained'>Home</Button></Link>
         </div>
     )
 }
