@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 function Create() {
 
     const [item, setItem ] = useState({
-        name:'', description: '', picture:''
+        item_name:'', reservation: null
     });
 
     const handleInputChange = (event) => {
@@ -27,13 +27,7 @@ function Create() {
                 <p>name:</p>
                 <input
                 name="name"
-                value={item.name}
-                onChange={e => handleInputChange(e)}
-                />
-                <p>description:</p>
-                <input
-                name="description"
-                value={item.description}
+                value={item.item_name}
                 onChange={e => handleInputChange(e)}
                 />
                 <input type="submit" value="Submit" />
