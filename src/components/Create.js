@@ -17,23 +17,25 @@ function Create() {
     };
     
     const saveItem = (item) => {
-        fetch('https://localhost:8080/items', {
+        fetch('http://localhost:8080/api/items', {
             method: 'POST',
             headers: {
+                'Accept': 'application/jason',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(item)
         })
         .then(res => console.log(item))
         .catch(err => console.error(err))
-        //event.preventDefault();
-        //console.log(item);
+        
     }
 
     const addItem = (event) => {
         saveItem(item);
         event.preventDefault();
         console.log(item);
+        
+        
     }
 
     return (
