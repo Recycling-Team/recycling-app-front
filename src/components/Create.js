@@ -9,24 +9,41 @@ import { Button } from '@mui/material';
 function Create() {
 
     const [item, setItem ] = useState({
-        item_name:'', reservation: null
+       item_name:'', reservation: null
     });
 
     const handleInputChange = (event) => {
         setItem({...item, [event.target.name]: event.target.value});
-    }
+    };
     
-    const save = (event) => {
+    const saveItem = (item) => {
+        fetch('https://localhost:8080/items', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(item)
+        })
+        .then(res => console.log(item))
+        .catch(err => console.error(err))
+        //event.preventDefault();
+        //console.log(item);
+    }
+
+    const addItem = (event) => {
+        saveItem(item);
         event.preventDefault();
         console.log(item);
     }
 
     return (
         <div className="body">
-            <form onSubmit={save}>
+            <form onSubmit={addItem}>
                 <p>name:</p>
                 <input
-                name="name"
+                id='item_name'
+                name='item_name'
+                type="text"
                 value={item.item_name}
                 onChange={e => handleInputChange(e)}
                 />

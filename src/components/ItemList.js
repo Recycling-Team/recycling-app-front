@@ -25,7 +25,9 @@ function ItemList() {
       <div>
          <h1>All items</h1>
          {items.map((item) =>(
-            <div key={item.item_id}>{item.item_name}</div>
+            <div key={item.item_id}>
+               {item.item_name}
+            </div>
          ))}
          <Link to="/"><Button variant='contained'>Home</Button></Link>
       </div>
