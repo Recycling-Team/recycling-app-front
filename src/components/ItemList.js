@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, NativeSelect } from '@mui/material';
 import { useEffect } from 'react';
 
 function ItemList() {
@@ -50,14 +50,14 @@ function ItemList() {
                {item.item_name}
             </div>
          ))}
-          <select defaultValue={'DEFAULT'} onChange={e => handleChange(e)}>
+          <NativeSelect defaultValue={'DEFAULT'} onChange={e => handleChange(e)}>
  <option value="DEFAULT" disabled>Users</option>
 {users.map(user => (
 <option value={user.user_id} key={user.user_id}>{user.user_name}</option>
 ))
 }
 
- </select>
+ </NativeSelect>
          <Link to="/"><Button variant='contained'>Home</Button></Link>
       </div>
    );
