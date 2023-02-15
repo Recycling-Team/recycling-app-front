@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
-import DropDown from './DropDown';
 
 function ItemList() {
 
    const [items, setItems] = useState([]);
+   const [users, setUsers] = useState([]);
   
 
 
@@ -23,6 +23,24 @@ function ItemList() {
       fetchItems();
    }, [])
 
+   useEffect(() => {
+      const fetchItems = async () => {
+          try{
+             const response = await fetch('http://localhost:8080/users');
+             const json = await response.json();
+             setUsers(json);
+             console.log(json);
+          } catch (error) {
+             console.error(error);
+          }
+       };
+       fetchItems();
+    }, [])
+
+    const handleChange = (event) => {
+      console.log(event.target.value);
+      }
+
 
    return(
       <div>
@@ -30,9 +48,16 @@ function ItemList() {
          {items.map((item) =>(
             <div key={item.item_id}>
                {item.item_name}
-               <DropDown />
             </div>
          ))}
+          <select defaultValue={'DEFAULT'} onChange={e => handleChange(e)}>
+ <option value="DEFAULT" disabled>Users</option>
+{users.map(user => (
+<option value={user.user_id} key={user.user_id}>{user.user_name}</option>
+))
+}
+
+ </select>
          <Link to="/"><Button variant='contained'>Home</Button></Link>
       </div>
    );
