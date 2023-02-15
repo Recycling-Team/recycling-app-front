@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
+import DropDown from './DropDown';
 
 function ItemList() {
 
    const [items, setItems] = useState([]);
+  
+
 
    useEffect(() => {
       const fetchItems = async () => {
@@ -27,6 +30,7 @@ function ItemList() {
          {items.map((item) =>(
             <div key={item.item_id}>
                {item.item_name}
+               <DropDown />
             </div>
          ))}
          <Link to="/"><Button variant='contained'>Home</Button></Link>
