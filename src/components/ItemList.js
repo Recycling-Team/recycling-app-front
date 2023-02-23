@@ -43,22 +43,13 @@ function ItemList() {
 
 
    return(
-      <div>
+      <div className='homebody'>
          <h1>All items</h1>
          {items.map((item) =>(
             <div key={item.item_id}>
-               {item.item_name}
+               <h5>{item.item_name}</h5>
             </div>
          ))}
-          <NativeSelect defaultValue={'DEFAULT'} onChange={e => handleChange(e)}>
- <option value="DEFAULT" disabled>Users</option>
-{users.map(user => (
-<option value={user.user_id} key={user.user_id}>{user.user_name}</option>
-))
-}
-
- </NativeSelect>
-         <Link to="/"><Button variant='contained'>Home</Button></Link>
       </div>
    );
 }

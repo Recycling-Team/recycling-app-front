@@ -39,7 +39,8 @@ function Create() {
     }
 
     return (
-        <div className="body">
+        <div className="homebody">
+            <h1>Create a listing</h1>
             <form onSubmit={addItem}>
                 <p>name:</p>
                 <input
@@ -51,8 +52,8 @@ function Create() {
                 />
                 <input type="submit" value="Submit" />
             </form>
-            <Link to="/"><Button variant='contained'>Home</Button></Link>
         </div>
+        
     )
 }
 
