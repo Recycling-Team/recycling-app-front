@@ -19,6 +19,9 @@ const Navbar = () => {
              <li>
                <NavLink to="/itemlist">List</NavLink>
              </li>
+             <li>
+               <NavLink to="/search">Search</NavLink>
+             </li>
            </ul>
          </div>
        </div>
@@ -26,4 +29,4 @@ const Navbar = () => {
    )
  }
  
- export default Navbar
+ export default Navbar;
