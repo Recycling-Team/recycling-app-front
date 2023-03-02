@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, NativeSelect } from '@mui/material';
 import { useEffect } from 'react';
+import Header from './Header.js'
+
 
 function ItemList() {
 
@@ -44,7 +46,7 @@ function ItemList() {
 
    return(
       <div className='homebody'>
-         <h1>All items</h1>
+         <Header text='All items'/>
          {items.map((item) =>(
             <div key={item.item_id}>
                <h5>{item.item_name}</h5>
