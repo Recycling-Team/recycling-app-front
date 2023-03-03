@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, NativeSelect } from '@mui/material';
+import { Button, NativeSelect, Paper, Typography } from '@mui/material';
 import { useEffect } from 'react';
+import { Image } from '@mui/icons-material';
 
 function ItemList() {
 
@@ -44,12 +45,28 @@ function ItemList() {
 
    return(
       <div className='homebody'>
-         <h1>All items</h1>
-         {items.map((item) =>(
+         <div className='grid-container'>
+            <Paper className='grid-container1' elevation={3}>
+               <Typography variant='h3'>Category 1</Typography> 
+               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Typography> 
+            </Paper>
+            <Paper className='grid-container2' elevation={3}>
+               <Typography variant='h3'>Category 2</Typography> 
+               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Typography> 
+            </Paper>
+            <Paper className='grid-container3' elevation={3}>
+               <Typography variant='h3'>Category 3</Typography> 
+               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Typography>  
+            </Paper>
+         </div>
+         <div className='homebody'>
+            <h1>All items</h1>
+            {items.map((item) =>(
             <div key={item.item_id}>
                <h5>{item.item_name}</h5>
             </div>
          ))}
+         </div>
       </div>
    );
 }

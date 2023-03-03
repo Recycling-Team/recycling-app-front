@@ -9,9 +9,9 @@ function Home() {
          <SearchBar/>
          <div className="homebody">
             <div className="grid-container">
-               <div className="grid-item1">GRID TESTING, WE CAN SHOW ITEMS ETC HERE FOR EXAMPLE</div>
-               <div className="grid-item2">GRID TESTING, WE CAN SHOW ITEMS ETC HERE FOR EXAMPLE</div>
-               <div className="grid-item3">GRID TESTING, WE CAN SHOW ITEMS ETC HERE FOR EXAMPLE</div>
+               <div className="grid-item1">GRID TESTING</div>
+               <div className="grid-item2">GRID TESTING</div>
+               <div className="grid-item3">GRID TESTING</div>
             </div>
          </div>
       </div>    
