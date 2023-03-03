@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, NativeSelect, Paper, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { Image } from '@mui/icons-material';
+import Header from './Header.js'
 
 function ItemList() {
 
@@ -60,7 +61,7 @@ function ItemList() {
             </Paper>
          </div>
          <div className='homebody'>
-            <h1>All items</h1>
+            <Header text='All items'/>
             {items.map((item) =>(
             <div key={item.item_id}>
                <h5>{item.item_name}</h5>
