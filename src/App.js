@@ -5,6 +5,8 @@ import Create from './components/Create.js'
 import Home from './components/Home.js';
 import ItemList from './components/ItemList.js';
 import NavBar from './components/NavBar.js'
+import Search from './components/Search.js'
+
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path='create' element={<Create/>}/>
         <Route path='itemlist' element={<ItemList/>}/>
+        <Route path='search' element={<Search/>}/>
       </Routes>
     </div>
   );
