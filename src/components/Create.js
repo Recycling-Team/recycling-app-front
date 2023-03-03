@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import React from 'react';
-
+import { Button } from '@mui/material';
+import Text from './Text.js'
+import Input from './Input.js'
+import Header from './Header.
 
 
 
@@ -8,7 +11,7 @@ import React from 'react';
 function Create() {
 
     const [item, setItem ] = useState({
-       item_name:'', reservation: null
+       item_name:'',condition:'', description: '', category:'', reservation: null
     });
 
     const handleInputChange = (event) => {
@@ -26,30 +29,55 @@ function Create() {
         })
         .then(res => console.log(item))
         .catch(err => console.error(err))
-        
     }
 
     const addItem = (event) => {
         saveItem(item);
         event.preventDefault();
         console.log(item);
-        
-        
+        setItem({
+            item_name:'', condition:'', description: '', category:'', reservation: null
+        })
     }
 
     return (
         <div className="homebody">
-            <h1>Create a listing</h1>
+            <Header text='Create a listing'/>
             <form onSubmit={addItem}>
-                <p>name:</p>
-                <input
-                id='item_name'
-                name='item_name'
-                type="text"
-                value={item.item_name}
-                onChange={e => handleInputChange(e)}
+                <Text text='Name'/>
+                <Input 
+                    id='item_name' 
+                    name='item_name' 
+                    type='text' 
+                    value={item.item_name} 
+                    onchange={e=>handleInputChange(e)}
                 />
-                <input type="submit" value="Submit" />
+                <Text text='Condition'/>
+                <Input
+                    id='condition'
+                    name='condition'
+                    type='text'
+                    value={item.condition}
+                    onchange={e => handleInputChange(e)}
+                />
+                <Text text='Description' />
+                <input
+                    id='description'
+                    name='description'
+                    type='text'
+                    value={item.description}
+                    onChange={e => handleInputChange(e)}
+                />
+                <Text text='Category'/>
+                <input
+                    id='category'
+                    name='category'
+                    type='text'
+                    value={item.category}
+                    onChange={e => handleInputChange(e)}
+                />
+                <br/>
+                <input type="submit" value="submit" />
             </form>
         </div>
         
