@@ -47,8 +47,6 @@ function ItemList() {
 
    return(
       <div className='homebody'>
-         <Header text='All items'/>
-         {items.map((item) =>(
          <div className='grid-container'>
             <Paper className='grid-container1' elevation={3}>
                <Typography variant='h3'>Category 1</Typography> 
@@ -64,7 +62,7 @@ function ItemList() {
             </Paper>
          </div>
          <div className='homebody'>
-            <h1>All items</h1>
+            <Header text='All items'/>
             {items.map((item) =>(
             <div key={item.item_id}>
                <h5>{item.item_name}</h5>

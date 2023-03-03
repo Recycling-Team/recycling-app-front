@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 import Text from './Text.js'
 import Input from './Input.js'
-import Header from './Header.
+import Header from './Header.js'
 
 
 
