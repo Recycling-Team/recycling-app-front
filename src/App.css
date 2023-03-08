@@ -41,4 +41,36 @@
     background-color: whitesmoke;
     
   }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #78f008;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: #7AE582;
+    margin: 50px;
+  }
+  
+  .search-bar input[type="text"] {
+    flex: 1;
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .search-bar button[type="submit"] {
+    border: none;
+    background-color: #abeeaf;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 8px;
+  }
+  
+  .search-bar button[type="submit"]:hover {
+    background-color: rgb(28, 94, 2);
+  }
   

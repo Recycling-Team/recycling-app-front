@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import '../NavBar.css'
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
    return (
@@ -8,6 +9,7 @@ const Navbar = () => {
          <div className="logo">
             <h4>Logo</h4>
          </div>
+         <SearchBar/>
          <div className="nav-elements">
            <ul>
              <li>
@@ -26,4 +28,4 @@ const Navbar = () => {
    )
  }
  
- export default Navbar
+ export default Navbar;
