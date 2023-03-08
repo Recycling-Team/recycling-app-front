@@ -58,7 +58,7 @@ function ItemList() {
             </Paper>
             <Paper className='grid-container3' elevation={3}>
                <Typography variant='h3'>Category 3</Typography> 
-               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Typography>  
+               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</Typography>  
             </Paper>
          </div>
          <div className='homebody'>
