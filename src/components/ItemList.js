@@ -1,22 +1,46 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, NativeSelect, Paper, Typography } from '@mui/material';
+import { Button, IconButton, NativeSelect, Paper, Typography, Card, CardActionArea, CardContent } from '@mui/material';
 import { useEffect } from 'react';
-import Header from './Header.js'
-import { Image } from '@mui/icons-material';
+import Header from './Header.js';
+import Category from './Category.js';
 
 
 function ItemList() {
 
    const [items, setItems] = useState([]);
    const [users, setUsers] = useState([]);
-  
+   const [categories, setCategories] = useState([]);
+   const [category, setCategory] = useState('');
 
+   useEffect(() => {
+      const fetchCategories = async () => {
+         try{
+            const response = await fetch('http://localhost:7071/api/GetCategories');
+            const json = await response.json();
+            setCategories(json);
+         } catch (error) {
+            console.error(error);
+         }
+      };
+      fetchCategories();
+   }, [])
+
+   // Maps fetched categories to Paper component
+   const categoryPapers = categories.map((category) => (
+      <Card key={category.category_id} elevation={3} className='grid-item'>
+         <CardActionArea>
+            <CardContent onClick={() => setCategory(category.category)}>
+               <Typography variant='h5'>{category.category}</Typography>
+            </CardContent>
+         </CardActionArea>
+      </Card>
+   ));
 
    useEffect(() => {
       const fetchItems = async () => {
          try{
-            const response = await fetch('http://localhost:8080/items');
+            const response = await fetch('http://localhost:7071/api/GetItems');
             const json = await response.json();
             setItems(json);
          } catch (error) {
@@ -44,22 +68,14 @@ function ItemList() {
       console.log(event.target.value);
       }
 
-
+   
    return(
       <div className='homebody'>
          <div className='grid-container'>
-            <Paper className='grid-container1' elevation={3}>
-               <Typography variant='h3'>Category 1</Typography> 
-               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Typography> 
-            </Paper>
-            <Paper className='grid-container2' elevation={3}>
-               <Typography variant='h3'>Category 2</Typography> 
-               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Typography> 
-            </Paper>
-            <Paper className='grid-container3' elevation={3}>
-               <Typography variant='h3'>Category 3</Typography> 
-               <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</Typography>  
-            </Paper>
+          {categoryPapers}
+         </div>
+         <div className='homebody'>
+            <Category category={category}/>  
          </div>
          <div className='homebody'>
             <Header text='All items'/>
