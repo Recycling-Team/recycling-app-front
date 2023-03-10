@@ -11,7 +11,7 @@ function ItemList() {
    const [items, setItems] = useState([]);
    const [users, setUsers] = useState([]);
    const [categories, setCategories] = useState([]);
-   const [category, setCategory] = useState('');
+   const [category, setCategory] = useState([]);
 
    useEffect(() => {
       const fetchCategories = async () => {
@@ -30,7 +30,7 @@ function ItemList() {
    const categoryPapers = categories.map((category) => (
       <Card key={category.category_id} elevation={3} className='grid-item'>
          <CardActionArea>
-            <CardContent onClick={() => setCategory(category.category)}>
+            <CardContent onClick={() => setCategory(category)}>
                <Typography variant='h5'>{category.category}</Typography>
             </CardContent>
          </CardActionArea>
