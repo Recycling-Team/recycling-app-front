@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 function Category({category}) {
    const [items, setItems] = useState([]);
 
+   //Fetch all items and filter the items based on category id   
    useEffect(() => {
       fetch('http://localhost:7071/api/GetItems')
       .then(response => response.json())
