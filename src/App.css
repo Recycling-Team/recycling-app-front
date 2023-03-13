@@ -20,19 +20,16 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 10px;
+  grid-column-gap: 50px;
   margin: 50px;
+
 }
 
-.grid-item1 { grid-area: 1 / 1 / 3 / 2; 
+.grid-item { 
   border-style: solid;
-  border-color: black;}
-.grid-item2 { grid-area: 1 / 2 / 2 / 3; 
-  border-style: solid;
-  border-color: black;}
-.grid-item3 { grid-area: 1 / 3 / 2 / 4; 
-  border-style: solid;
-  border-color: black;}
+  border-color: black;
+  text-align: center;}
+
 
   body {
     margin: 0;
