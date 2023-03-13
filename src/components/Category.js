@@ -5,7 +5,7 @@ function Category({category}) {
 
    //Fetch all items and filter the items based on category id   
    useEffect(() => {
-      fetch('http://localhost:7071/api/GetItems')
+      fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getitems')
       .then(response => response.json())
       .then(data => {
          const filteredItems = data.filter(item => item.category === category.category_id);
