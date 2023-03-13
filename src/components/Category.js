@@ -16,7 +16,7 @@ function Category({category}) {
 
    return(
       <div>
-         <h1>{category.category_id} | {category.category}</h1>
+         <h1>{category.category_id}  {category.category}</h1>
          <ul>
             {items.map(item => (
                <li key={item.item_id}>
