@@ -4,15 +4,13 @@ import { MenuItem, Select } from '@mui/material';
 import Text from './Text.js'
 import Input from './Input.js'
 import Header from './Header.js'
-import { DateTimePicker, LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
 function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
    const [item, setItem ] = useState({
-      item_name:'',condition:'', description: '', category:'', picktime: null, user: 1
+      item_name:'',condition:'', description: '', category:'', pickTime: null, user: 1
    });
 
    useEffect(() => {
@@ -63,7 +61,7 @@ function CreateForm() {
       saveItem(item);
       event.preventDefault();
       setItem({
-          item_name:'', condition:'', description: '', category:'', user: 1
+          item_name:'', condition:'', description: '', category:'', user: 1, pickTime: null
       })
    }
 
