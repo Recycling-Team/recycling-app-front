@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Reserve from './Reserve'
 
 function Category({category}) {
    const [items, setItems] = useState([]);
@@ -24,9 +25,10 @@ function Category({category}) {
                <br/>
                Description: {item.description}
                <br/> 
-               Condition: {item.condition}  
+               Condition: {item.condition}
+               <br />  
+               <button onClick={() => Reserve(item.item_id)}>Reserve</button>
                </li>
-               
             ))}
          </ul>
       </div>
