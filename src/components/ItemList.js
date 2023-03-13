@@ -16,7 +16,7 @@ function ItemList() {
    useEffect(() => {
       const fetchCategories = async () => {
          try{
-            const response = await fetch('http://localhost:7071/api/GetCategories');
+            const response = await fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getcategories');
             const json = await response.json();
             setCategories(json);
          } catch (error) {
