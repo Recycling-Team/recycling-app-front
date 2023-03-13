@@ -4,13 +4,14 @@ import { Button } from '@mui/material';
 import Text from './Text.js'
 import Input from './Input.js'
 import Header from './Header.js'
+import CreateForm from './CreateForm'
 
 
 
 
 function Create() {
 
-    const [item, setItem ] = useState({
+    /*const [item, setItem ] = useState({
        item_name:'',condition:'', description: '', category:'', reservation: null
     });
 
@@ -38,50 +39,11 @@ function Create() {
         setItem({
             item_name:'', condition:'', description: '', category:'', reservation: null
         })
-    }
+    }*/
 
     return (
-        <div className="homebody">
-            <Header text='Create a listing'/>
-            <form onSubmit={addItem}>
-                <Text text='Name'/>
-                <Input 
-                    id='item_name' 
-                    name='item_name' 
-                    type='text' 
-                    value={item.item_name} 
-                    onchange={e=>handleInputChange(e)}
-                />
-                <Text text='Condition'/>
-                <Input
-                    id='condition'
-                    name='condition'
-                    type='text'
-                    value={item.condition}
-                    onchange={e => handleInputChange(e)}
-                />
-                <Text text='Description' />
-                <input
-                    id='description'
-                    name='description'
-                    type='text'
-                    value={item.description}
-                    onChange={e => handleInputChange(e)}
-                />
-                <Text text='Category'/>
-                <input
-                    id='category'
-                    name='category'
-                    type='text'
-                    value={item.category}
-                    onChange={e => handleInputChange(e)}
-                />
-                <br/>
-                <input type="submit" value="submit" />
-            </form>
-        </div>
-        
-    )
+        <CreateForm/>
+    );
 }
 
 export default Create;
