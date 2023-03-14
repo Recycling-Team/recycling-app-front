@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardContent, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import Reserve from './Reserve'
 
 function Category({category}) {
    const [items, setItems] = useState([]);
