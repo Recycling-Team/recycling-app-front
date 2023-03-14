@@ -1,6 +1,6 @@
 import reservationsService from '../services/reservations'
 
-const Reserve =  item_id  => {
+const Reserve =  item  => {
 
     var day = new Date().getDate();
     var month = new Date().getMonth() + 1;
@@ -9,32 +9,21 @@ const Reserve =  item_id  => {
 
     const newObject = {
         user_id: 1,
-        item_id: item_id,
+        item_id: item.item_id,
         date: date
     }
     
     console.log(newObject)
     
-    /*
-    fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/savereservation', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newObject)
-    })
-    .then(res => console.log(res))
-    .catch(err => console.error(err))
-    */
-    
     reservationsService
         .update(newObject)
         .then(newObject =>{
+            alert(`item ${item.item_name} reserved!`)
             console.log(newObject)
             console.log('reservation saved!')
         })
         .catch(error => {
+            alert(`unable to reserve item ${item.item_name}`)
             console.log('reservation failed')
             console.log(error)
         })

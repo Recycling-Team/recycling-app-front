@@ -23,7 +23,7 @@ function Category({category}) {
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
                <Typography>Condition: {item.condition}</Typography>
-               <Button variant="contained" onClick={() => Reserve(item.item_id)}>Reserve</Button>
+               <Button variant="contained" onClick={() => Reserve(item)}>Reserve</Button>
             </CardContent>
          </CardActionArea>
       </Card>
