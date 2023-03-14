@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, Paper, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, Paper, Typography, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Reserve from './Reserve'
 
@@ -23,6 +23,7 @@ function Category({category}) {
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
                <Typography>Condition: {item.condition}</Typography>
+               <Button variant="contained" onClick={() => Reserve(item.item_id)}>Reserve</Button>
             </CardContent>
          </CardActionArea>
       </Card>
