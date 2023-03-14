@@ -40,7 +40,7 @@ function ItemList() {
    useEffect(() => {
       const fetchItems = async () => {
          try{
-            const response = await fetch('http://localhost:7071/api/GetItems');
+            const response = await fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getitems');
             const json = await response.json();
             setItems(json);
          } catch (error) {
