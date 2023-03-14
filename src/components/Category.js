@@ -1,3 +1,4 @@
+import { Card, CardActionArea, CardContent, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Reserve from './Reserve'
 
@@ -15,22 +16,21 @@ function Category({category}) {
       .catch(error => console.error(error))
    }, [category]);
 
+   const itemCards = items.map((item) =>(
+      <Card className='card' key={item.item_id} elevation={2} >
+         <CardActionArea>
+            <CardContent>
+               <Typography>Name: {item.item_name}</Typography>
+               <Typography>Description: {item.description}</Typography>
+               <Typography>Condition: {item.condition}</Typography>
+            </CardContent>
+         </CardActionArea>
+      </Card>
+   ))
+
    return(
       <div>
-         <h1>{category.category_id}  {category.category}</h1>
-         <ul>
-            {items.map(item => (
-               <li key={item.item_id}>
-               Item: {item.item_name} 
-               <br/>
-               Description: {item.description}
-               <br/> 
-               Condition: {item.condition}
-               <br />  
-               <button onClick={() => Reserve(item.item_id)}>Reserve</button>
-               </li>
-            ))}
-         </ul>
+         {itemCards}
       </div>
    );
 }
