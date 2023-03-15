@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardContent, Paper, Typography, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import itemsService from '../services/items'
 import Reserve from './Reserve'
 
 function Category({category}) {
@@ -7,13 +8,15 @@ function Category({category}) {
 
    //Fetch all items and filter the items based on category id   
    useEffect(() => {
-      fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getitems')
-      .then(response => response.json())
-      .then(data => {
-         const filteredItems = data.filter(item => item.category === category.category_id);
-         setItems(filteredItems);
-      })
-      .catch(error => console.error(error))
+      itemsService
+         .getAll()
+         .then(data => {
+            const filteredItems = data.filter(item => item.category === category.category_id);
+            setItems(filteredItems);
+         })
+         .catch(error =>{
+            console.log(error)
+         })
    }, [category]);
 
    const itemCards = items.map((item) =>(
