@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import './App.css';
-import Create from './components/Create.js'
+import CreateForm from './components/CreateForm.js'
 import Home from './components/Home.js';
 import ItemList from './components/ItemList.js';
 import NavBar from './components/NavBar.js'
@@ -15,7 +15,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path='create' element={<Create/>}/>
+        <Route path='create' element={<CreateForm/>}/>
         <Route path='itemlist' element={<ItemList/>}/>
         <Route path='search' element={<Search/>}/>
       </Routes>

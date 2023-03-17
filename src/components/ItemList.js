@@ -4,6 +4,8 @@ import { Button, IconButton, NativeSelect, Paper, Typography, Card, CardActionAr
 import { useEffect } from 'react';
 import Header from './Header.js';
 import Category from './Category.js';
+import categoriesService from '../services/categories'
+import itemsService from '../services/items'
 
 
 function ItemList() {
@@ -14,16 +16,23 @@ function ItemList() {
    const [category, setCategory] = useState([]);
 
    useEffect(() => {
-      const fetchCategories = async () => {
-         try{
-            const response = await fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getcategories');
-            const json = await response.json();
-            setCategories(json);
-         } catch (error) {
-            console.error(error);
-         }
-      };
-      fetchCategories();
+      categoriesService
+         .getAll()
+         .then(data => {
+            setCategories(data)
+         })
+         .catch(error =>{
+            console.log(error)
+         })
+
+      itemsService
+         .getAll()
+         .then(data => {
+            setItems(data);
+         })
+         .catch(error =>{
+            console.log(error)
+         })
    }, [])
 
    // Maps fetched categories to Paper component
@@ -39,19 +48,6 @@ function ItemList() {
 
    useEffect(() => {
       const fetchItems = async () => {
-         try{
-            const response = await fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getitems');
-            const json = await response.json();
-            setItems(json);
-         } catch (error) {
-            console.error(error);
-         }
-      };
-      fetchItems();
-   }, [])
-
-   useEffect(() => {
-      const fetchItems = async () => {
           try{
              const response = await fetch('http://localhost:8080/users');
              const json = await response.json();
@@ -63,6 +59,7 @@ function ItemList() {
        };
        fetchItems();
     }, [])
+    */
 
     const handleChange = (event) => {
       console.log(event.target.value);

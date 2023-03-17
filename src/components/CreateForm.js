@@ -2,43 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
 import { MenuItem, Select } from '@mui/material';
 import Text from './Text.js'
-import Input from './Input.js'
 import Header from './Header.js'
+import categoriesService from '../services/categories'
+import conditionsService from '../services/conditions'
+import itemsService from '../services/items'
 
 
 function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
    const [item, setItem ] = useState({
-      item_name:'',condition:'', description: '', category:'', pickTime: null, user: 1
+      item_name:'', condition:'', description: '', category:'', user: 1, pickTime: null
    });
 
+   //fetch categories and conditions data from server
    useEffect(() => {
-      const fetchCategories = async () => {
-         try{
-            const response = await fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getcategories');
-            const json = await response.json();
-            setCategories(json);
-         } catch (error) {
-            console.error(error);
-         }
-      };
-      fetchCategories();
-   }, [])
+      categoriesService
+         .getAll()
+         .then(data => {
+            setCategories(data);
+         })
+         .catch(error =>{
+            console.log(error)
+         })
 
-   useEffect(() => {
-      const fetchConditions = async () => {
-         try{
-            const response = await fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/getconditions');
-            const json = await response.json();
-            setConditions(json);
-         } catch (error) {
-            console.error(error);
-         }
-      };
-      fetchConditions();
+      conditionsService
+         .getAll()
+         .then(data => {
+            setConditions(data)
+         })
+         .catch(error => {
+            console.log(error)
+         })
    }, [])
-
 
    const handleChange = (event) => {
       const { name, value } = event.target;
@@ -66,16 +62,14 @@ function CreateForm() {
    }
 
    const saveItem = (item) => {
-      fetch('https://recycle-app-back-92873459875.azurewebsites.net/api/add-item', {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(item)
-      })
-      .then(res => console.log(item))
-      .catch(err => console.error(err))
+      itemsService
+         .addItem(item)
+         .then(
+            console.log(`added ${item} to items`)
+         )
+         .catch(error => {
+            console.log(error)
+         })
   }
 
    const handleDropChange = (event) => {
@@ -87,12 +81,12 @@ function CreateForm() {
             <Header text='Create a listing'/>
             <form onSubmit={handleSubmit}>
                 <Text text='Name'/>
-                <Input 
+                <input 
                     id='item_name' 
                     name='item_name' 
                     type='text' 
                     value={item.item_name} 
-                    onchange={e=>handleChange(e)}
+                    onChange={e=>handleChange(e)}
                 />
                 <Text text='Description' />
                 <input
@@ -105,23 +99,23 @@ function CreateForm() {
                <label>
                 <Text text='Choose condition' />
                   <Select 
-                  className='dropdown'
-                  variant="outlined"
-                  sx={{
-                  width: 200,
-                  height: 40,
-                  marginRight: 15,
-                  border: "1px solid darkgrey",
-                  color: "black",
-                  }}
-                  id='condition' 
-                  name='condition' 
-                  defaultValue='Condition'
-                  value={item.condition} 
-                  onChange={handleDropChange}
-                  fullWidth
-                  label='Category'
-                  >
+                     className='dropdown'
+                     variant="outlined"
+                     sx={{
+                        width: 200,
+                        height: 40,
+                        marginRight: 15,
+                        border: "1px solid darkgrey",
+                        color: "black",
+                     }}
+                     id='condition' 
+                     name='condition' 
+                     defaultValue='Condition'
+                     value={item.condition} 
+                     onChange={handleDropChange}
+                     fullWidth
+                     label='Category'
+                     >
                      {conditions.map((condition) => (
                         <MenuItem key={condition.condition_id} value={condition.condition_id}>{condition.condition}</MenuItem>
                      ))}
@@ -131,23 +125,23 @@ function CreateForm() {
                 <label>
                 <Text text='Choose a category' />
                   <Select 
-                  className='dropdown'
-                  variant="outlined"
-                  sx={{
-                  width: 200,
-                  height: 40,
-                  marginRight: 15,
-                  border: "1px solid darkgrey",
-                  color: "black",
-                  }}
-                  id='category' 
-                  name='category' 
-                  defaultValue='Category'
-                  value={item.category} 
-                  onChange={handleDropChange}
-                  fullWidth
-                  label='Category'
-                  >
+                     className='dropdown'
+                     variant="outlined"
+                     sx={{
+                        width: 200,
+                        height: 40,
+                        marginRight: 15,
+                        border: "1px solid darkgrey",
+                        color: "black",
+                     }}
+                     id='category' 
+                     name='category' 
+                     defaultValue='Category'
+                     value={item.category} 
+                     onChange={handleDropChange}
+                     fullWidth
+                     label='Category'
+                     >
                      {categories.map((category) => (
                         <MenuItem key={category.category_id} value={category.category_id}>{category.category}</MenuItem>
                      ))}
