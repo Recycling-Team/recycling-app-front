@@ -59,7 +59,6 @@ function ItemList() {
        };
        fetchItems();
     }, [])
-    */
 
     const handleChange = (event) => {
       console.log(event.target.value);
