@@ -45,8 +45,7 @@ function ItemList() {
          </CardActionArea>
       </Card>
    ));
-   
-   /*
+
    useEffect(() => {
       const fetchItems = async () => {
           try{
