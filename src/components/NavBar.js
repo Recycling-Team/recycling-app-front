@@ -21,6 +21,9 @@ const Navbar = () => {
              <li>
                <NavLink to="/itemlist">Items</NavLink>
              </li>
+             <li>
+               <NavLink to="/user">User</NavLink>
+             </li>
            </ul>
          </div>
        </div>

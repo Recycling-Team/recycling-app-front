@@ -6,6 +6,7 @@ import Home from './components/Home.js';
 import ItemList from './components/ItemList.js';
 import NavBar from './components/NavBar.js'
 import Search from './components/Search.js'
+import UserPage from './components/UserPage';
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='create' element={<CreateForm/>}/>
         <Route path='itemlist' element={<ItemList/>}/>
         <Route path='search' element={<Search/>}/>
+        <Route path='user' element={<UserPage/>}/>
       </Routes>
     </div>
   );
