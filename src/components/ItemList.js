@@ -46,19 +46,6 @@ function ItemList() {
       </Card>
    ));
 
-   useEffect(() => {
-      const fetchItems = async () => {
-          try{
-             const response = await fetch('http://localhost:8080/users');
-             const json = await response.json();
-             setUsers(json);
-             console.log(json);
-          } catch (error) {
-             console.error(error);
-          }
-       };
-       fetchItems();
-    }, [])
 
     const handleChange = (event) => {
       console.log(event.target.value);

@@ -12,7 +12,7 @@ function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
    const [item, setItem ] = useState({
-      item_name:'', condition:'', description: '', category:'', user: 1, pickTime: null
+      item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
    });
 
    //fetch categories and conditions data from server
