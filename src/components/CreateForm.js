@@ -48,7 +48,7 @@ function CreateForm() {
       console.log(date);
       setItem((prevItem) => ({
          ...prevItem,
-         picktime: date,
+         pick_time: date,
       }));
    }*/
 
@@ -57,7 +57,7 @@ function CreateForm() {
       saveItem(item);
       event.preventDefault();
       setItem({
-          item_name:'', condition:'', description: '', category:'', user: 1, pickTime: null
+          item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
       })
    }
 

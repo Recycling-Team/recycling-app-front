@@ -7,8 +7,8 @@ import ItemList from './components/ItemList.js';
 import NavBar from './components/NavBar.js'
 import Search from './components/Search.js'
 import UserPage from './components/UserPage';
-
-
+import Login from './components/Login';
+import Registration from './components/Registration';
 
 function App() {
   return (
@@ -20,6 +20,8 @@ function App() {
         <Route path='itemlist' element={<ItemList/>}/>
         <Route path='search' element={<Search/>}/>
         <Route path='user' element={<UserPage/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='registration' element={<Registration/>}/>
       </Routes>
     </div>
   );
