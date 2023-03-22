@@ -22,13 +22,25 @@
   grid-template-rows: 1fr;
   grid-column-gap: 50px;
   margin: 50px;
+}
+
+.grid-container-home {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  margin: 50px;
 
 }
+
+
 
 .grid-item { 
   border-style: solid;
   border-color: black;
-  text-align: center;}
+  text-align: center;
+  text-decoration: none;
+}
 
 
   body {
