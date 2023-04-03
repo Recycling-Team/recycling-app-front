@@ -14,7 +14,16 @@ const addItem = newObject => {
     return request.then(response => response.data)
 }
 
+const deleteItem = itemId => {
+    //const request = axios.delete(`${baseUrl}/${itemId}`)
+    //return request.then(response => response.data)
+    //ei vielä toimi bäckissä
+
+    return
+}
+
 export default {
     getAll,
-    addItem
+    addItem,
+    deleteItem
 }
