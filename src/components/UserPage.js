@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import itemsService from '../services/items';
 import usersService from '../services/users';
 import reservationsService from '../services/reservations';
-import { MenuItem, Select } from '@mui/material';
+import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
 import Text from './Text.js'
 import { Card, CardActionArea, CardContent, Typography, Button } from "@mui/material";
 
@@ -14,6 +14,7 @@ function UserPage() {
    const [userItems, setUserItems] = useState([]);
    const [loggedUser, setLoggedUser] = useState('');
    const [reservations, setReservations] = useState([]);
+   const [notificationMessage, setNotificationMessage] = useState('One of your items has been reserved!');
 
    useEffect(() => {
       itemsService
@@ -38,7 +39,6 @@ function UserPage() {
          .getAll()
          .then(data => {
             setReservations(data)
-            console.log(data)
          })
          .catch(error => {
             console.log(error)
@@ -51,7 +51,23 @@ function UserPage() {
       setLoggedUser(parseInt(event.target.value));
       const filteredItems = items.filter(item => item.user === loggedUser);
       setUserItems(filteredItems);
-  };
+   };
+
+   /*const reservationNotification = () => {
+      if (notificationMessage !== null) {
+         <Snackbar
+            open={notificationMessage !== null}
+            autoHideDuration={3000}
+            onClose={handleCloseNotification}
+            message={notificationMessage}
+         />
+      }
+      
+   }*/
+
+   const handleCloseNotification = () => {
+      setNotificationMessage(null);
+   }
   
    const itemCards = userItems.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
@@ -93,6 +109,23 @@ function UserPage() {
                      ))}
                   </Select>
             {itemCards}
+         <Snackbar
+            anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+            open={notificationMessage !== null}
+            autoHideDuration={3000}
+            onClose={handleCloseNotification}
+            message={notificationMessage}
+            >
+            <Alert
+               variant='filled'
+               onClose={handleCloseNotification}
+               severity='success'
+               sx={{width: '100%'}}          
+            >
+            {notificationMessage}
+            </Alert>
+         </Snackbar>
+         
       </div>
    )
 }
