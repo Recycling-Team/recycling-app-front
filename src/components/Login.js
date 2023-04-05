@@ -11,23 +11,25 @@ import { Button } from "@mui/material";
 function Login() {
 
    const [user, setUser] = useState('')
-   const [id, setId] = useState(0)
 
    const handleSubmit = (event) => {
       event.preventDefault();
 
-      const loginUser = {
-         user: user
+      if (user !== '') {
+         const loginUser = {
+            user: user
+         }
+         usersService
+            .add(loginUser)
+            .then(data => {
+               usersService
+                  .set(data.id)
+            })
+            .catch(error => {
+               console.log(error)
+            })
+         setUser('')
       }
-      usersService
-         .add(loginUser)
-         .then(data => {
-            usersService
-               .set(data.id)
-         })
-         .catch(error => {
-            console.log(error)
-         })
    }
 
    const handleinputChange = event => {

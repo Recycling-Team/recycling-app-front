@@ -1,13 +1,15 @@
 import { Card, CardActionArea, CardContent, Paper, Typography, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import itemsService from '../services/items'
+import ButtonOptions from './ButtonOptions'
 import usersService from '../services/users'
 import Reserve from './Reserve'
 
 function Category({category}) {
    const [items, setItems] = useState([]);
    const [user, setUser] = useState([])
-   
+   const [userId, setUserId] = useState(1);
+
    //Fetch all items and filter the items based on category id   
    useEffect(() => {
       itemsService
@@ -28,7 +30,10 @@ function Category({category}) {
          })
          .catch(error => {
             console.log(error)
-            setUser(null)
+            setUser({
+               id: 0,
+               user: 'null'
+            })
          })
    }, [category]);
 
@@ -39,7 +44,7 @@ function Category({category}) {
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
                <Typography>Condition: {item.condition}</Typography>
-               <Button variant="contained" onClick={() => Reserve(item)}>Reserve</Button>
+               <ButtonOptions item={item} loggedUser={user}  />
             </CardContent>
          </CardActionArea>
       </Card>

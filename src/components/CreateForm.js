@@ -45,7 +45,10 @@ function CreateForm() {
          })
          .catch(error => {
             console.log(error)
-            setUser(null)
+            setUser({
+               id: 0,
+               user: 'null'
+            })
          })
    }, [])
 

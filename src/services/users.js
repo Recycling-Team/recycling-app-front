@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const baseUrl = 'https://recycle-app-back-92873459875.azurewebsites.net/api'
 
-let userId
+let userId 
 
 const getAll = () => {
    const request = axios.get(`${baseUrl}/getusers`)

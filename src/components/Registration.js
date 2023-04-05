@@ -13,6 +13,7 @@ function Login() {
    const [user, setUser] = useState('')
 
    const handleSubmit = event => {
+      event.preventDefault()
       const newUser = {
          user: user
       }
@@ -26,7 +27,8 @@ function Login() {
             })
             .catch(error => {
                console.log(error)
-            }) 
+            })
+         setUser('')
       }
    }
 
