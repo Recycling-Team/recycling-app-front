@@ -6,6 +6,7 @@ import Header from './Header.js'
 import categoriesService from '../services/categories'
 import conditionsService from '../services/conditions'
 import itemsService from '../services/items'
+import usersService from '../services/users'
 
 
 function CreateForm() {
@@ -14,6 +15,7 @@ function CreateForm() {
    const [item, setItem ] = useState({
       item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
    });
+   const [user, setUser] = useState([])
 
    //fetch categories and conditions data from server
    useEffect(() => {
@@ -33,6 +35,17 @@ function CreateForm() {
          })
          .catch(error => {
             console.log(error)
+         })
+         
+      usersService
+         .getUser()
+         .then(data => {
+            console.log(data)
+            setUser(data)
+         })
+         .catch(error => {
+            console.log(error)
+            setUser(null)
          })
    }, [])
 
@@ -54,23 +67,22 @@ function CreateForm() {
 
 
    const handleSubmit = (event) => {
-      saveItem(item);
       event.preventDefault();
+      
+      itemsService
+         .addItem(item)
+         .then( response => {
+            console.log(response)
+            console.log(`added ${item.item_name} to items`)
+         })
+         .catch(error => {
+            console.log(error)
+         })
+
       setItem({
           item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
       })
    }
-
-   const saveItem = (item) => {
-      itemsService
-         .addItem(item)
-         .then(
-            console.log(`added ${item} to items`)
-         )
-         .catch(error => {
-            console.log(error)
-         })
-  }
 
    const handleDropChange = (event) => {
       setItem({...item, [event.target.name]: event.target.value});

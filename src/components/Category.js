@@ -1,11 +1,13 @@
 import { Card, CardActionArea, CardContent, Paper, Typography, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import itemsService from '../services/items'
+import usersService from '../services/users'
 import Reserve from './Reserve'
 
 function Category({category}) {
    const [items, setItems] = useState([]);
-
+   const [user, setUser] = useState([])
+   
    //Fetch all items and filter the items based on category id   
    useEffect(() => {
       itemsService
@@ -16,6 +18,17 @@ function Category({category}) {
          })
          .catch(error =>{
             console.log(error)
+         })
+      
+      usersService
+         .getUser()
+         .then(data => {
+            console.log(data)
+            setUser(data)
+         })
+         .catch(error => {
+            console.log(error)
+            setUser(null)
          })
    }, [category]);
 
