@@ -60,14 +60,6 @@ function ItemList() {
          <div className='homebody'>
             <Category category={category}/>  
          </div>
-         <div className='homebody'>
-            <Header text='All items'/>
-            {items.map((item) =>(
-            <div key={item.item_id}>
-               <h5>{item.item_name}</h5>
-            </div>
-         ))}
-         </div>
       </div>
    );
 }

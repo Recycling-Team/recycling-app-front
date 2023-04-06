@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import itemsService from '../services/items';
 import usersService from '../services/users';
 import reservationsService from '../services/reservations';
-import { MenuItem, Select } from '@mui/material';
+import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
 import Text from './Text.js'
+import Notifications from './Notifications';
 import { Card, CardActionArea, CardContent, Typography, Button } from "@mui/material";
 
 
@@ -14,6 +15,7 @@ function UserPage() {
    const [userItems, setUserItems] = useState([]);
    const [loggedUser, setLoggedUser] = useState('');
    const [reservations, setReservations] = useState([]);
+   
 
    useEffect(() => {
       itemsService
@@ -38,7 +40,6 @@ function UserPage() {
          .getAll()
          .then(data => {
             setReservations(data)
-            console.log(data)
          })
          .catch(error => {
             console.log(error)
@@ -51,7 +52,8 @@ function UserPage() {
       setLoggedUser(parseInt(event.target.value));
       const filteredItems = items.filter(item => item.user === loggedUser);
       setUserItems(filteredItems);
-  };
+   };
+
   
    const itemCards = userItems.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
@@ -93,6 +95,7 @@ function UserPage() {
                      ))}
                   </Select>
             {itemCards}
+            <Notifications/>               
       </div>
    )
 }
