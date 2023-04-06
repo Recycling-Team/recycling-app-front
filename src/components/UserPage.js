@@ -4,6 +4,7 @@ import usersService from '../services/users';
 import reservationsService from '../services/reservations';
 import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
 import Text from './Text.js'
+import Notifications from './Notifications';
 import { Card, CardActionArea, CardContent, Typography, Button } from "@mui/material";
 
 
@@ -14,7 +15,7 @@ function UserPage() {
    const [userItems, setUserItems] = useState([]);
    const [loggedUser, setLoggedUser] = useState('');
    const [reservations, setReservations] = useState([]);
-   const [notificationMessage, setNotificationMessage] = useState('One of your items has been reserved!');
+   
 
    useEffect(() => {
       itemsService
@@ -53,21 +54,6 @@ function UserPage() {
       setUserItems(filteredItems);
    };
 
-   /*const reservationNotification = () => {
-      if (notificationMessage !== null) {
-         <Snackbar
-            open={notificationMessage !== null}
-            autoHideDuration={3000}
-            onClose={handleCloseNotification}
-            message={notificationMessage}
-         />
-      }
-      
-   }*/
-
-   const handleCloseNotification = () => {
-      setNotificationMessage(null);
-   }
   
    const itemCards = userItems.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
@@ -109,23 +95,7 @@ function UserPage() {
                      ))}
                   </Select>
             {itemCards}
-         <Snackbar
-            anchorOrigin={{vertical: 'top', horizontal: 'center'}}
-            open={notificationMessage !== null}
-            autoHideDuration={3000}
-            onClose={handleCloseNotification}
-            message={notificationMessage}
-            >
-            <Alert
-               variant='filled'
-               onClose={handleCloseNotification}
-               severity='success'
-               sx={{width: '100%'}}          
-            >
-            {notificationMessage}
-            </Alert>
-         </Snackbar>
-         
+            <Notifications/>               
       </div>
    )
 }
