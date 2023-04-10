@@ -5,30 +5,39 @@ import Header from './Header'
 import { NavLink } from "react-router-dom";
 import usersService from '../services/users'
 import { Button } from "@mui/material";
-
-
+import Notification from './Notification'
 
 function Login() {
 
    const [user, setUser] = useState('')
+   const [notification, setNotification] = useState('')
+   const [status, setStatus] = useState(null)
 
    const handleSubmit = (event) => {
       event.preventDefault();
 
       if (user !== '') {
-         const loginUser = {
-            user: user
-         }
          usersService
-            .add(loginUser)
+            .login(user)
             .then(data => {
-               usersService
-                  .set(data.id)
+                  usersService
+                     .set(data)
+                  setNotification(`Welcome ${user}!`)
+                  setStatus(true)
             })
             .catch(error => {
                console.log(error)
+               setNotification(`User ${user} not found.`)
+               setStatus(false)
             })
+
+            setTimeout(() => {
+               setNotification(null)
+               setStatus(null)
+             }, 4000)
+
          setUser('')
+         return
       }
    }
 
@@ -41,6 +50,7 @@ function Login() {
    return(
       <div className="homebody">
          <Header text="Log in" />
+         <Notification text={notification} status={status}/>
          <form onSubmit={handleSubmit}>
             <Text text='Username:'/>
             <input 

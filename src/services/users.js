@@ -1,33 +1,40 @@
 import axios from 'axios'
 
-const baseUrl = 'https://recycle-app-back-92873459875.azurewebsites.net/api'
+//const baseUrl = 'https://recycle-app-back-92873459875.azurewebsites.net/api'
 
-let userId 
+//const baseUrl = 'http://localhost:3001'
+
+const baseUrl = 'http://localhost:7071/api'
+
+let user = null
 
 const getAll = () => {
-   const request = axios.get(`${baseUrl}/getusers`)
+   const request = axios.get(`${baseUrl}/users`)
    return request.then(response => response.data)
 }
 
 const create = newUser => {
-   const request = axios.post(`http://localhost:3001/users`, newUser)
+   const request = axios.post(`${baseUrl}/users`, newUser)
    return request.then(response => response.data)
 }
 
-const add = loggedUser => {
-   const request = axios.post(`http://localhost:3001/users`, loggedUser)
+const login = user => {
+   console.log(user)
+   const request = axios.get(`${baseUrl}/login`, {
+      params: {
+         name: user
+      }
+   })
    return request.then(response => response.data)
 }
 
-const getUser = () => {
-   console.log(userId)
-   const request = axios.get(`http://localhost:3001/users/${userId}`)
-   return request.then(response => response.data)
+const getUser = async() => {
+  return user
 }
 
-const set = (user) => {
-   userId = user
-   console.log(userId)
+const set = (data) => {
+   user = data.user_id
+   console.log(user)
    return
 }
 
@@ -35,6 +42,6 @@ export default {
    getAll,
    create,
    getUser,
-   add,
+   login,
    set
 }

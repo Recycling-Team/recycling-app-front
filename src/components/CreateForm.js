@@ -46,8 +46,8 @@ function CreateForm() {
          .catch(error => {
             console.log(error)
             setUser({
-               id: 0,
-               user: 'null'
+               user_id: 0,
+               username: 'null'
             })
          })
    }, [])
@@ -83,7 +83,7 @@ function CreateForm() {
          })
 
       setItem({
-          item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
+          item_name:'', condition:'', description: '', category:'', user: user, pick_time: null
       })
    }
 

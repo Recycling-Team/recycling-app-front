@@ -31,8 +31,8 @@ function Category({category}) {
          .catch(error => {
             console.log(error)
             setUser({
-               id: 0,
-               user: 'null'
+               user_id: 0,
+               username: 'null'
             })
          })
    }, [category]);

@@ -4,7 +4,10 @@ import DeleteItem from './DeleteItem'
 
 
 const ButtonOptions = ({ item, loggedUser}) => {
-    if (item.user !== loggedUser.id) {
+    if (loggedUser === null) {
+        return
+    }
+    if (item.user !== loggedUser) {
         return (
             <Button variant="contained" onClick={() => Reserve(item)}>Reserve</Button>
         )
