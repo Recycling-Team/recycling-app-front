@@ -34,7 +34,7 @@ function Login() {
             setTimeout(() => {
                setNotification(null)
                setStatus(null)
-             }, 4000)
+            }, 4000)
 
          setUser('')
          return

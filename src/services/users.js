@@ -14,7 +14,8 @@ const getAll = () => {
 }
 
 const create = newUser => {
-   const request = axios.post(`${baseUrl}/users`, newUser)
+   console.log(newUser)
+   const request = axios.post(`${baseUrl}/add-user`, newUser)
    return request.then(response => response.data)
 }
 
