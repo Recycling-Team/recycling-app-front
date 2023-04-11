@@ -4,6 +4,10 @@ import DeleteItem from './DeleteItem'
 
 
 const ButtonOptions = ({ item, loggedUser}) => {
+
+    if (loggedUser === undefined ) {
+        return
+    }
     if (loggedUser === null) {
         return
     }
