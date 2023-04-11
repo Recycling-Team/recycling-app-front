@@ -25,7 +25,6 @@ function Category({category}) {
       usersService
          .getUser()
          .then(data => {
-            console.log(data)
             setUser(data)
          })
          .catch(error => {

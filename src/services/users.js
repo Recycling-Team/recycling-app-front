@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-//const baseUrl = 'https://recycle-app-back-92873459875.azurewebsites.net/api'
+const baseUrl = 'https://recycle-app-back-92873459875.azurewebsites.net/api'
 
 //const baseUrl = 'http://localhost:3001'
 
-const baseUrl = 'http://localhost:7071/api'
+//const baseUrl = 'http://localhost:7071/api'
 
-let user = null
+let user = []
 
 const getAll = () => {
    const request = axios.get(`${baseUrl}/users`)
@@ -34,7 +34,7 @@ const getUser = async() => {
 }
 
 const set = (data) => {
-   user = data.user_id
+   user = data
    console.log(user)
    return
 }
