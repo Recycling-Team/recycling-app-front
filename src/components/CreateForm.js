@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
-import { MenuItem, Select } from '@mui/material';
+import { MenuItem, Select} from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Text from './Text.js'
 import Header from './Header.js'
 import categoriesService from '../services/categories'
@@ -12,7 +15,7 @@ function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
    const [item, setItem ] = useState({
-      item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
+      item_name:'', condition:'', description: '', available: 'Yes', category:'', user: 1, pick_time: null
    });
 
    //fetch categories and conditions data from server
@@ -44,20 +47,20 @@ function CreateForm() {
       }));
    };
 
-   /*const handleDateChange = (date) => {
+   const handleDateChange = (date) => {
       console.log(date);
       setItem((prevItem) => ({
          ...prevItem,
          pick_time: date,
       }));
-   }*/
+   }
 
 
    const handleSubmit = (event) => {
       saveItem(item);
       event.preventDefault();
       setItem({
-          item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
+          item_name:'', condition:'', description: '', available: 'Yes', category:'', message:'', user: 1, pick_time: null
       })
    }
 
@@ -123,6 +126,7 @@ function CreateForm() {
                 </label>
                 <br></br>
                 <label>
+            
                 <Text text='Choose a category' />
                   <Select 
                      className='dropdown'
@@ -148,6 +152,28 @@ function CreateForm() {
                   </Select>
                 </label>
                 <br></br>
+<label>
+                <Text text='Choose Date' />
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                   <DatePicker 
+                   id='pick_time'
+                   value={item.pick_time}
+                   onChange={e=>handleDateChange(e)}
+                   />
+                  </LocalizationProvider>
+</label>
+                  <br></br>
+               
+                  <Text text='Message' />
+                  <textarea
+                 id='message'
+                 name='message'
+                value={item.message}
+                onChange={e=>handleChange(e)}
+                rows={5} 
+                style={{ width: '100%', padding: '10px', border: '1px solid darkgrey' }} 
+               />
+
                 <input type="submit" value="Submit" />
             </form>
         </div>
