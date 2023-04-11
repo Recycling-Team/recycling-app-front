@@ -15,10 +15,10 @@ import usersService from '../services/users'
 function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
+   const [loggedUser, setLoggedUser] = useState(0)
    const [item, setItem ] = useState({
-      item_name:'', condition:'', description: '', available: 'Yes', category:'', user: 1, pick_time: null
+      item_name:'', condition:'', description: '', available: 'Yes', category:'', user: loggedUser, pick_time: null
    });
-   const [user, setUser] = useState([])
 
    //fetch categories and conditions data from server
    useEffect(() => {
@@ -43,18 +43,21 @@ function CreateForm() {
       usersService
          .getUser()
          .then(data => {
-            console.log(data)
-            setUser(data)
+            setLoggedUser(data.user_id)
+            setItem((prevItem) => ({
+               ...prevItem,
+               user: data.user_id,
+            }));
          })
          .catch(error => {
             console.log(error)
-            setUser({
+            setLoggedUser({
                user_id: 0,
                username: 'null'
             })
          })
    }, [])
-
+   
    const handleChange = (event) => {
       const { name, value } = event.target;
       setItem((prevItem) => ({
@@ -73,9 +76,11 @@ function CreateForm() {
 
 
    const handleSubmit = (event) => {
+      console.log(item);
+      saveItem(item);
       event.preventDefault();
       setItem({
-          item_name:'', condition:'', description: '', available: 'Yes', category:'', message:'', user: 1, pick_time: null
+          item_name:'', condition:'', description: '', available: 'Yes', category:'', message:'', user: loggedUser, pick_time: null
       })
    }
 
