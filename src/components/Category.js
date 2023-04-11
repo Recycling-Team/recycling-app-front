@@ -7,8 +7,8 @@ import Reserve from './Reserve'
 
 function Category({category}) {
    const [items, setItems] = useState([]);
-   const [user, setUser] = useState([])
-   const [userId, setUserId] = useState(1);
+   const [user, setUser] = useState(null)
+   //const [userId, setUserId] = useState(1);
 
    //Fetch all items and filter the items based on category id   
    useEffect(() => {
@@ -25,17 +25,17 @@ function Category({category}) {
       usersService
          .getUser()
          .then(data => {
-            setUser(data)
+            setUser(data.user_id);
          })
          .catch(error => {
             console.log(error)
-            setUser({
-               user_id: 0,
-               username: 'null'
-            })
          })
    }, [category]);
 
+   if (!user) {
+      return <div>You must login to see items</div>;
+   }
+   
    const itemCards = items.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
          <CardActionArea>

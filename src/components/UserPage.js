@@ -41,10 +41,7 @@ function UserPage() {
          .getUser()
          .then(data => {
             setUser(data);
-            console.log(user);
          })
-   
-
       
       reservationsService
          .getAll()
@@ -57,6 +54,10 @@ function UserPage() {
       
       }, [user])
 
+
+      if (!user.user_id) {
+         return <div className='homebody'>You must login to see User page</div>;
+      }
 
    const handleDropChange = (event) => {
       //setLoggedUser(parseInt(event.target.value));
