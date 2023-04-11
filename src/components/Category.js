@@ -32,9 +32,9 @@ function Category({category}) {
          })
    }, [category]);
 
-   if (!user) {
+   /*if (!user) {
       return <div>You must login to see items</div>;
-   }
+   }*/
    
    const itemCards = items.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
