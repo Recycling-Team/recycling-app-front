@@ -10,7 +10,7 @@ const update = newObject => {
 }
 
 const getAll = () => {
-    const request = axios.get(`${baseUrl}/getreservations`)
+    const request = axios.get(`${baseUrl}/reservations`)
     return request.then(response => response.data)
  }
 

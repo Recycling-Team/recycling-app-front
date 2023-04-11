@@ -2,18 +2,21 @@ import React, { useEffect, useState } from 'react';
 import itemsService from '../services/items';
 import usersService from '../services/users';
 import reservationsService from '../services/reservations';
-import { MenuItem, Select } from '@mui/material';
+import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
 import Text from './Text.js'
+import Notifications from './Notifications';
 import { Card, CardActionArea, CardContent, Typography, Button } from "@mui/material";
 
 
 function UserPage() {
 
+   const [user, setUser] = useState('');
    const [users, setUsers] = useState([]);
    const [items, setItems] = useState([]);
    const [userItems, setUserItems] = useState([]);
    const [loggedUser, setLoggedUser] = useState('');
    const [reservations, setReservations] = useState([]);
+   
 
    useEffect(() => {
       itemsService
@@ -33,25 +36,35 @@ function UserPage() {
          .catch(error => {
             console.log(error)
          })
+        
+      usersService
+         .getUser()
+         .then(data => {
+            setUser(data);
+            console.log(user);
+         })
+   
+
       
       reservationsService
          .getAll()
          .then(data => {
             setReservations(data)
-            console.log(data)
          })
          .catch(error => {
             console.log(error)
          })
       
-   }, [])
+      }, [user])
 
 
    const handleDropChange = (event) => {
-      setLoggedUser(parseInt(event.target.value));
-      const filteredItems = items.filter(item => item.user === loggedUser);
+      //setLoggedUser(parseInt(event.target.value));
+      const filteredItems = items.filter(item => item.user === user.user_id);
       setUserItems(filteredItems);
-  };
+      //console.log(userItems);
+   };
+
   
    const itemCards = userItems.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
@@ -69,30 +82,10 @@ function UserPage() {
 
    return (
       <div className="homebody">
-         <h1>Your items</h1>
-         <Text text='Choose user' />
-                  <Select 
-                     className='dropdown'
-                     variant="outlined"
-                     sx={{
-                        width: 200,
-                        height: 40,
-                        marginRight: 15,
-                        border: "1px solid darkgrey",
-                        color: "black",
-                     }}
-                     id='user' 
-                     defaultValue='User'
-                     value={loggedUser} 
-                     onChange={handleDropChange}
-                     fullWidth
-                     label='User'
-                     >
-                     {users.map((user) => (
-                        <MenuItem key={user.user_id} value={user.user_id}>{user.username}</MenuItem>
-                     ))}
-                  </Select>
-            {itemCards}
+         <h1>Welcome {user.username}</h1>
+         <Button onClick={handleDropChange}>Show my items</Button>
+         {itemCards}
+         <Notifications/>               
       </div>
    )
 }
