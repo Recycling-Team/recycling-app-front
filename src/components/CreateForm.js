@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
-import { MenuItem, Select } from '@mui/material';
+import { MenuItem, Select} from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Text from './Text.js'
 import Header from './Header.js'
 import categoriesService from '../services/categories'
 import conditionsService from '../services/conditions'
 import itemsService from '../services/items'
+import usersService from '../services/users'
 
 
 function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
+   const [loggedUser, setLoggedUser] = useState(0)
    const [item, setItem ] = useState({
-      item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
+      item_name:'', condition:'', description: '', available: 'Yes', category:'', user: loggedUser, pick_time: null
    });
 
    //fetch categories and conditions data from server
@@ -34,8 +39,25 @@ function CreateForm() {
          .catch(error => {
             console.log(error)
          })
+         
+      usersService
+         .getUser()
+         .then(data => {
+            setLoggedUser(data.user_id)
+            setItem((prevItem) => ({
+               ...prevItem,
+               user: data.user_id,
+            }));
+         })
+         .catch(error => {
+            console.log(error)
+            setLoggedUser({
+               user_id: 0,
+               username: 'null'
+            })
+         })
    }, [])
-
+   
    const handleChange = (event) => {
       const { name, value } = event.target;
       setItem((prevItem) => ({
@@ -44,33 +66,34 @@ function CreateForm() {
       }));
    };
 
-   /*const handleDateChange = (date) => {
+   const handleDateChange = (date) => {
       console.log(date);
       setItem((prevItem) => ({
          ...prevItem,
          pick_time: date,
       }));
-   }*/
+   }
 
 
    const handleSubmit = (event) => {
+      console.log(item);
       saveItem(item);
       event.preventDefault();
       setItem({
-          item_name:'', condition:'', description: '', category:'', user: 1, pick_time: null
+          item_name:'', condition:'', description: '', available: 'Yes', category:'', message:'', user: loggedUser, pick_time: null
       })
    }
 
    const saveItem = (item) => {
       itemsService
          .addItem(item)
-         .then(
-            console.log(`added ${item} to items`)
-         )
+         .then( response => {
+            console.log(`added ${item.item_name} to items`)
+         })
          .catch(error => {
             console.log(error)
          })
-  }
+   }
 
    const handleDropChange = (event) => {
       setItem({...item, [event.target.name]: event.target.value});
@@ -123,6 +146,7 @@ function CreateForm() {
                 </label>
                 <br></br>
                 <label>
+            
                 <Text text='Choose a category' />
                   <Select 
                      className='dropdown'
@@ -148,6 +172,28 @@ function CreateForm() {
                   </Select>
                 </label>
                 <br></br>
+<label>
+                <Text text='Choose Date' />
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                   <DatePicker 
+                   id='pick_time'
+                   value={item.pick_time}
+                   onChange={e=>handleDateChange(e)}
+                   />
+                  </LocalizationProvider>
+</label>
+                  <br></br>
+               
+                  <Text text='Message' />
+                  <textarea
+                 id='message'
+                 name='message'
+                value={item.message}
+                onChange={e=>handleChange(e)}
+                rows={5} 
+                style={{ width: '100%', padding: '10px', border: '1px solid darkgrey' }} 
+               />
+
                 <input type="submit" value="Submit" />
             </form>
         </div>
