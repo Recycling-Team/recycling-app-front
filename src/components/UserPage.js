@@ -56,7 +56,7 @@ function UserPage() {
 
 
       if (!user.user_id) {
-         return <div className='homebody'>You must login to see User page</div>;
+         return <div className='homebody'>You must login to see User page.</div>;
       }
 
    const handleDropChange = (event) => {
