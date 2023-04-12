@@ -7,7 +7,7 @@ const Navbar = () => {
      <nav className="navbar">
        <div className="container">
          <div className="logo">
-            <h4>Logo</h4>
+            <h4>Recycling App</h4>
          </div>
          <SearchBar/>
          <div className="nav-elements">

@@ -2,75 +2,88 @@ import React, { useEffect, useRef, useState } from "react";
 import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
 import usersService from '../services/users'
 import reservationsService from "../services/reservations";
-function Notifications() {
+import itemsService from "../services/items";
+
+function Notifications({user, items}) {
 
    const [notifications, setNotifications] = useState([]);
-   const [user, setUser] = useState([]);
    const [reservations, setReservations] = useState([]);
+   //const [userItems, setUserItems] = useState([]);
 
    useEffect(() => {
-      setNotifications([
-        { message: 'One of your items has been made available again', type: 'info' },
-        { message: 'One of your items has been reserved!', type: 'success' },
-        { message: 'One of your items has been deleted!', type: 'error' }
-      ]);
-
-      usersService
-         .getUser()
-         .then(data => {
-            setUser(data);
-         })
-
       reservationsService
          .getAll()
          .then(data => {
-            setReservations(data)
+            setReservations(data);
+            data.forEach(reservation => {
+               items.forEach(item => {
+                  if(reservation.item_id === item.item_id) {
+                     //console.log(reservation);
+                     const reservationDate = new Date(reservation.date);
+                     const lastLoginDate = new Date(user.last_login);
+                     //console.log(reservationDate);
+                     //console.log(lastLoginDate);
+                     if (reservationDate > lastLoginDate) {
+                        const message = `Your ${item.item_name} has been reserved!`;
+                        const type = 'success';
+                        showNotification(message, type);
+                     } 
+                     
+                  }
+               })
+            })
          })
          .catch(error => {
             console.log(error)
          })
+         
+        }, [items, user.last_login]);
 
-      /*const compareDatesAndNotify = () => {
-         if (user.user_id === reservations.user_id ) {
-            const reservationDate = new Date(reservations.date);
+   
+
+   /*const compareDatesAndNotify = () => {
+      reservations.forEach(reservation => {
+         if (reservation.user_id === user.user_id) {
+            const reservationDate = new Date(reservation.date);
             const lastLoginDate = new Date(user.last_login)
-
+            
             if (reservationDate > lastLoginDate) {
                const message = 'One of your items has been reserved!';
                const type = 'success';
                showNotification(message, type);
             }
          }
-      }*/
+      });
+   }*/
 
-   }, []);
-
-
+   // Check if the same notification has been displayed before
    const showNotification = (message, type) => {
+      if (notifications.some(n => n.message === message && n.type === type)) {
+         return;
+      }
       setNotifications((prev) => [...prev, {message, type}]);
    };
 
-
-
+   // Remove the closed notification from the state
+   const handleCloseNotification = (notification) => {
+      setNotifications((prev) => prev.filter(n => n !== notification));
+   };
   
    return(
       <>
-         {notifications.map(({ message, type }, index) => (
-         <Snackbar
-            key={index}
-            open={notifications.length - 1 === index}
-            onClose={() => {
-               setNotifications((prev) => prev.slice(0, index).concat(prev.slice(index + 1)));
-            }}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{width: '100%', padding: '50px'}}
-         >
-            <Alert onClose={() => {
-               setNotifications((prev) => prev.slice(0, index).concat(prev.slice(index + 1)));
-            }} severity={type} sx={{width: '100%'}} variant='filled' >
-               {message}
-            </Alert>
-         </Snackbar>
-         ))}  
+         {notifications.map((notification, index) => (
+            <Snackbar
+               key={index}
+               open={true}
+               autoHideDuration={5000}
+               onClose={() => handleCloseNotification(notification)}
+               anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{width: '100%', padding: '50px'}}
+            >
+               <Alert onClose={() => handleCloseNotification(notification)} severity={notification.type} variant='filled' sx={{width:'100%'}}>
+                  {notification.message}
+               </Alert>
+            </Snackbar>
+         ))}
       </>
    );
 }
