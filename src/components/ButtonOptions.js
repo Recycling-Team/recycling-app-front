@@ -13,7 +13,7 @@ const ButtonOptions = ({ item, loggedUser}) => {
     }
     if (item.user !== loggedUser) {
         return (
-            <Button variant="contained" onClick={() => Reserve(item)}>Reserve</Button>
+            <Button variant="contained" onClick={() => Reserve(item, loggedUser)}>Reserve</Button>
         )
     } else {
         return (

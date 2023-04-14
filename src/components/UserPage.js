@@ -52,28 +52,24 @@ function UserPage() {
             console.log(error)
          })
       
-      }, [user])
+      }, [])
 
+   useEffect(() => {
+      const filteredItems = items.filter(item => item.user === user.user_id);
+      setUserItems(filteredItems);
+   }, [user, items])
 
       if (!user.user_id) {
          return <div className='homebody'>You must login to see User page.</div>;
       }
 
-   const handleDropChange = (event) => {
-      //setLoggedUser(parseInt(event.target.value));
-      const filteredItems = items.filter(item => item.user === user.user_id);
-      setUserItems(filteredItems);
-      //console.log(userItems);
-   };
-
-  
    const itemCards = userItems.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
          <CardActionArea>
             <CardContent>
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
-               <Typography>Condition: {item.condition}</Typography>
+               <Typography>Condition: {item.condition === 1 ? 'Good' : item.condition === 2 ? 'Average' : 'Bad'}</Typography>
                <Typography>Available: {item.available}</Typography>
             </CardContent>
          </CardActionArea>
@@ -84,9 +80,9 @@ function UserPage() {
    return (
       <div className="homebody">
          <h1>Welcome {user.username}</h1>
-         <Button onClick={handleDropChange}>Show my items</Button>
+         <h3>Your items</h3>
          {itemCards}
-         <Notifications/>               
+         <Notifications user={user} items={userItems}/>               
       </div>
    )
 }
