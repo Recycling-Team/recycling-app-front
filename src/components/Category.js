@@ -2,10 +2,13 @@ import { Card, CardActionArea, CardContent, Paper, Typography, Button } from "@m
 import React, { useEffect, useState } from "react";
 import itemsService from '../services/items'
 import ButtonOptions from './ButtonOptions'
+import usersService from '../services/users'
+import Reserve from './Reserve'
 
 function Category({category}) {
    const [items, setItems] = useState([]);
-   const [userId, setUserId] = useState(1);
+   const [user, setUser] = useState(null)
+   //const [userId, setUserId] = useState(1);
 
    //Fetch all items and filter the items based on category id   
    useEffect(() => {
@@ -18,8 +21,21 @@ function Category({category}) {
          .catch(error =>{
             console.log(error)
          })
+      
+      usersService
+         .getUser()
+         .then(data => {
+            setUser(data.user_id);
+         })
+         .catch(error => {
+            console.log(error)
+         })
    }, [category]);
 
+   /*if (!user) {
+      return <div>You must login to see items</div>;
+   }*/
+   
    const itemCards = items.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} >
          <CardActionArea>
@@ -27,7 +43,7 @@ function Category({category}) {
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
                <Typography>Condition: {item.condition}</Typography>
-               <ButtonOptions item={item} loggedUser={userId}  />
+               <ButtonOptions item={item} loggedUser={user}  />
             </CardContent>
          </CardActionArea>
       </Card>
