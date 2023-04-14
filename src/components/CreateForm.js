@@ -99,6 +99,10 @@ function CreateForm() {
       setItem({...item, [event.target.name]: event.target.value});
   };
 
+  if (!loggedUser) {
+      return <div className='homebody'>You need to login to create a listing</div>;
+   }
+
    return(
       <div className="homebody">
             <Header text='Create a listing'/>

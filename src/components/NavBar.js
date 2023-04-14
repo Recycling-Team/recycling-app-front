@@ -1,15 +1,14 @@
 import { NavLink } from "react-router-dom";
 import '../NavBar.css'
-import SearchBar from "./SearchBar";
+
 
 const Navbar = () => {
    return (
      <nav className="navbar">
        <div className="container">
          <div className="logo">
-            <h4>Recycling App</h4>
+            <NavLink to="/" className='logolink'>RecyclingApp</NavLink>
          </div>
-         <SearchBar/>
          <div className="nav-elements">
            <ul>
              <li>

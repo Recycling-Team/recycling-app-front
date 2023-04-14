@@ -39,22 +39,6 @@ function Notifications({user, items}) {
          
         }, [items, user.last_login]);
 
-   
-
-   /*const compareDatesAndNotify = () => {
-      reservations.forEach(reservation => {
-         if (reservation.user_id === user.user_id) {
-            const reservationDate = new Date(reservation.date);
-            const lastLoginDate = new Date(user.last_login)
-            
-            if (reservationDate > lastLoginDate) {
-               const message = 'One of your items has been reserved!';
-               const type = 'success';
-               showNotification(message, type);
-            }
-         }
-      });
-   }*/
 
    // Check if the same notification has been displayed before
    const showNotification = (message, type) => {
