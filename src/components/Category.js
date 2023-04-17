@@ -42,7 +42,7 @@ function Category({category}) {
             <CardContent>
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
-               <Typography>Condition: {item.condition}</Typography>
+               <Typography>Condition: {item.condition === 1 ? 'Good' : item.condition === 2 ? 'Average' : 'Bad'}</Typography>
                <ButtonOptions item={item} loggedUser={user}  />
             </CardContent>
          </CardActionArea>

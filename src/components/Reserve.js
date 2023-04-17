@@ -1,16 +1,13 @@
 import reservationsService from '../services/reservations'
 
-const Reserve =  item  => {
+const Reserve =  (item, loggedUser)  => {
 
-    var day = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
-    const date = `${day}.${month}.${year}`;
+    
 
     const newObject = {
-        user_id: 1,
+        user_id: loggedUser,
         item_id: item.item_id,
-        date: date
+        
     }
     
     console.log(newObject)
