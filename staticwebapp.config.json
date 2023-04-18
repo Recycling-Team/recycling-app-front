@@ -1,5 +1,9 @@
 {
-   "navigationFallback": {
-    "rewrite": "/*"
-   }
+   "routes": [
+     {
+       "route": "/*",
+       "serve": "/",
+       "statusCode": 200
+     }
+   ]
  }
