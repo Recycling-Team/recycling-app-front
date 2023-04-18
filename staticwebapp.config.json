@@ -2,8 +2,14 @@
    "routes": [
      {
        "route": "/*",
-       "serve": "/index.html",
+       "serve": "/",
        "statusCode": 200
      }
-   ]
+   ],
+
+   "navigationFallback": {
+      "rewrite": "/",
+      "exclude": ["*.{svg,png,jpg,gif}","*.{css,scss}","*.js"]
+    }
  }
+   
