@@ -2,7 +2,7 @@
    "routes": [
      {
        "route": "/*",
-       "serve": "/",
+       "serve": "/login",
        "statusCode": 200
      }
    ]
