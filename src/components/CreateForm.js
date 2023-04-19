@@ -39,27 +39,18 @@ function CreateForm() {
          .catch(error => {
             console.log(error)
          })
-         
-      usersService
-         .getUser()
-         .then(data => {
-            setLoggedUser(data.user_id)
-            setItem((prevItem) => ({
-               ...prevItem,
-               user: data.user_id,
-            }));
-         })
-         .catch(error => {
-            console.log(error)
-            setLoggedUser({
-               user_id: 0,
-               username: 'null'
-            })
-         })
+        
+      let user = usersService.getUser()
+      setLoggedUser(user.user_id)
+      setItem((prevItem) => ({
+         ...prevItem,
+         user: user.user_id,
+      }))
    }, [])
-   
+
    const handleChange = (event) => {
       const { name, value } = event.target;
+      console.log(loggedUser)
       setItem((prevItem) => ({
          ...prevItem,
          [name]: value,

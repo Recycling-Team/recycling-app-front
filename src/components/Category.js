@@ -22,14 +22,9 @@ function Category({category}) {
             console.log(error)
          })
       
-      usersService
-         .getUser()
-         .then(data => {
-            setUser(data.user_id);
-         })
-         .catch(error => {
-            console.log(error)
-         })
+      let user = usersService.getUser()
+      setUser(user.user_id)
+         
    }, [category]);
 
    /*if (!user) {

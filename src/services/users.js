@@ -6,7 +6,7 @@ const baseUrl = 'https://recycle-app-back-92873459875.azurewebsites.net/api'
 
 //const baseUrl = 'http://localhost:7071/api'
 
-let user = []
+
 
 const getAll = () => {
    const request = axios.get(`${baseUrl}/users`)
@@ -29,14 +29,15 @@ const login = user => {
    return request.then(response => response.data)
 }
 
-const getUser = async() => {
-  return user
+const getUser = () => {
+   let userJson = localStorage.getItem("user");
+   return userJson ? JSON.parse(userJson) : null;
 }
 
-const set = (data) => {
-   user = data
-   console.log(user)
-   return
+const setUser = (user) => {
+  localStorage.setItem("user", JSON.stringify(user));
+  let userJson = localStorage.getItem("user");
+  console.log(userJson)
 }
 
 export default {
@@ -44,5 +45,5 @@ export default {
    create,
    getUser,
    login,
-   set
+   setUser
 }
