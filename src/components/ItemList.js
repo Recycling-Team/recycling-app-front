@@ -35,7 +35,7 @@ function ItemList() {
          })
    }, [])
 
-   // Maps fetched categories to Paper component
+   // Maps fetched categories to Card component
    const categoryPapers = categories.map((category) => (
       <Card key={category.category_id} elevation={3} className='grid-item'>
          <CardActionArea>
@@ -59,14 +59,6 @@ function ItemList() {
          </div>
          <div className='homebody'>
             <Category category={category}/>  
-         </div>
-         <div className='homebody'>
-            <Header text='All items'/>
-            {items.map((item) =>(
-            <div key={item.item_id}>
-               <h5>{item.item_name}</h5>
-            </div>
-         ))}
          </div>
       </div>
    );
