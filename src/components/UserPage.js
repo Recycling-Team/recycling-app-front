@@ -37,11 +37,9 @@ function UserPage() {
             console.log(error)
          })
         
-      usersService
-         .getUser()
-         .then(data => {
-            setUser(data);
-         })
+      let user = usersService.getUser()
+      setUser(user)
+      
       
       reservationsService
          .getAll()
