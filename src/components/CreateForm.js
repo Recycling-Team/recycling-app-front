@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
 import { MenuItem, Select} from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Text from './Text.js'
@@ -16,6 +16,8 @@ function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
    const [user, setUser] = useState(0)
+   const [startTime, setStartTime] = useState(null);
+   const [endTime, setEndTime] = useState(null);
    const [item, setItem ] = useState({
       item_name:'', condition:'', description: '', available: 'True', category:'', user: user.user_id, pick_time: null
    });
@@ -57,13 +59,20 @@ function CreateForm() {
       }));
    };
 
-   const handleDateChange = (date) => {
-      console.log(date);
-      setItem((prevItem) => ({
-         ...prevItem,
-         pick_time: date,
-      }));
-   }
+
+   const handleStartTimeChange = (time) => {
+      setStartTime(time);
+    };
+  
+    const handleEndTimeChange = (time) => {
+  const start = startTime ? `${startTime.format('HH:mm')}-` : '';
+  const end = time ? `${time.format('HH:mm')}` : '';
+  const pickTime = `${start}${end}`;
+  setItem((prevItem) => ({
+    ...prevItem,
+    pick_time: pickTime,
+  }));
+    };
 
 
    const handleSubmit = (event) => {
@@ -107,12 +116,14 @@ function CreateForm() {
                     onChange={e=>handleChange(e)}
                 />
                 <Text text='Description' />
-                <input
+                <textarea
                     id='description'
                     name='description'
                     type='text'
+                    rows={4}
                     value={item.description}
                     onChange={e => handleChange(e)}
+                    style={{ width: '60%', padding: '10px', border: '1px solid darkgrey' }} 
                 />
                <label>
                 <Text text='Choose condition' />
@@ -165,18 +176,30 @@ function CreateForm() {
                         <MenuItem key={category.category_id} value={category.category_id}>{category.category}</MenuItem>
                      ))}
                   </Select>
-                </label>
+               </label>
                 <br></br>
-   <label>
-                <Text text='Choose Date' />
+                <Text text='Choose Time' />
+                <label style={{ display: 'flex', alignItems: 'center' }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                   <DatePicker 
+                   <TimePicker 
                    id='pick_time'
-                   value={item.pick_time}
-                   onChange={e=>handleDateChange(e)}
+                   value={startTime}
+                   onChange={handleStartTimeChange}
+                   format="HH:mm"
                    />
                   </LocalizationProvider>
-</label>
+                  <span style={{ margin: '0 10px' }}>-</span>
+
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                   <TimePicker 
+                   id='pick_time'
+                   value={endTime}
+                   onChange={handleEndTimeChange}
+                   format="HH:mm"
+                   />
+                  </LocalizationProvider>
+                </label>
+
                   <br></br>
                
                   <Text text='Message' />
