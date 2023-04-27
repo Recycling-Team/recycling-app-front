@@ -13,14 +13,13 @@ function UserPage() {
    const [user, setUser] = useState('');
    const [users, setUsers] = useState([]);
    const [items, setItems] = useState([]);
-   const [userItems, setUserItems] = useState([]);
    const [reservations, setReservations] = useState([]);
    const [userReservations, setUserReservations] = useState([]);
    
 
    useEffect(() => {
       itemsService
-         .getAll()
+         .itemsByUser()
          .then(data => {
             setItems(data)
          })
@@ -38,6 +37,7 @@ function UserPage() {
          })
         
       let user = usersService.getUser()
+      console.log(user)
       setUser(user)
       
       
@@ -73,6 +73,7 @@ function UserPage() {
       });
 
       Promise.all(promises).then(data => {
+         console.log(data);
          setUserReservations(data);
       }).catch(error => {
          console.log(error)
@@ -86,9 +87,10 @@ function UserPage() {
    
 
    const itemCards = items.map((item) =>(
-      <Card className='card' key={item.item_id} elevation={2} >
+      <Card className='card' key={item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}  >
          <CardActionArea>
             <CardContent>
+               <Typography>ID: {item.user}</Typography>
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
                <Typography>Condition: {item.condition === 1 ? 'Good' : item.condition === 2 ? 'Average' : 'Bad'}</Typography>
@@ -100,9 +102,10 @@ function UserPage() {
    ))
 
    const reservationCards = userReservations.map((reservation) =>(
-      <Card className='card' key={reservation.item.item_id} elevation={2} >
+      <Card className='card' key={reservation.item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}>
          <CardActionArea>
             <CardContent>
+               <Typography>Name: {reservation.user_id}</Typography>
                <Typography>Name: {reservation.item.item_name}</Typography>
                <Typography>Description: {reservation.item.description}</Typography>
                <Typography>Condition: {reservation.item.condition === 1 ? 'Good' : reservation.item.condition === 2 ? 'Average' : 'Bad'}</Typography>

@@ -32,7 +32,7 @@ function Category({category}) {
    }*/
    
    const itemCards = items.map((item) =>(
-      <Card className='card' key={item.item_id} elevation={2} >
+      <Card className='card' key={item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}>
          <CardActionArea>
             <CardContent>
                <Typography>Name: {item.item_name}</Typography>
