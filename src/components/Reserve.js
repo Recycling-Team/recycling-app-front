@@ -10,7 +10,7 @@ const Reserve =  (item, loggedUser)  => {
         
     }
     
-    console.log(newObject)
+    
     
     reservationsService
         .update(newObject)
