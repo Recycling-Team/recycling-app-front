@@ -10,9 +10,10 @@ let user = usersService.getUser()
     
 
 const update = (newObject,item) => {
+    console.log(item);
     const request = axios.post(`${baseUrl}/addreservation`, newObject)
     const request2 = axios.post(`${baseUrl}/update-item`, item)
-    return request.then(response => response.data)
+    return request.then(response => console.log(response.data))
 }
 
 const getAll = () => {

@@ -1,24 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import { Alert, Snackbar } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import usersService from '../services/users'
 import reservationsService from "../services/reservations";
 import itemsService from "../services/items";
 
 function Notifications() {
 
-   const [notifications, setNotifications] = useState([]);
-   //const [userReservations, setUserReservations] = useState([]);
    const [reservations, setReservations] = useState([]);
-   const [showNotification, setShowNotification] = useState(false);
-   const [currentNotification, setCurrentNotification] = useState(null);
+   const [notifications, setNotifications] = useState([]);
    const [userItems, setUserItems] = useState([]);
    const [user, setUser] = useState([]);
+   const [activeNotification, setActiveNotification] = useState(null);
+   const { enqueueSnackbar } = useSnackbar();
+
+   
 
    useEffect(() => {
       
       reservationsService
          .getUnnotifiedReservations()
          .then(data => {
+            console.log(data);
             setReservations(data);
          })
          .catch(error => {
@@ -36,39 +39,22 @@ function Notifications() {
 
    }, []);
 
+   //Filter reservations that has notifications 'True' and add them to array
    useEffect(() => {
-      const filteredNotifications = reservations.filter(reservation => reservation.notification === 'True');
-      setNotifications(filteredNotifications);
-      if (filteredNotifications.length > 0) {
-         setCurrentNotification(filteredNotifications[0]);
-         setShowNotification(true);
-      }
-   }, [reservations]);
+      const unnotifiedReservations = reservations.filter(reservation => reservation.notification === 'True' && user.user_id === reservation.item.user);
+      setNotifications(unnotifiedReservations);
+      },[reservations, user.user_id])
 
-   const handleSnackbarClose = () => {
-      setShowNotification(false);
 
-      const index = reservations.findIndex(
-         (reservation) => reservation.item_id === currentNotification.item_id
-      );
-      
-      const nextIndex = index + 1;
-
-      if (nextIndex < reservations.length) {
-         setCurrentNotification(reservations[nextIndex]);
-         setShowNotification(true);
-         //console.log(currentNotification);
-      } else {
-         setNotifications([]);
-         setCurrentNotification(null);
-      }
-
-      reservationsService.updateReservationNotification(currentNotification)
+   //Calls updateReservationNotification and sends data, that notification has been seen.
+   const handleSnackBarClose = (notification) => {
+      reservationsService.updateReservationNotification(notification)
          .then(() => {
             reservationsService
                .getUnnotifiedReservations()
                .then(data => {
                   setReservations(data);
+                  setActiveNotification(null);
                })
                .catch(error => {
                   console.log(error);
@@ -77,28 +63,34 @@ function Notifications() {
          .catch(error => {
             console.log(error);
          })
+
    }
+
+   useEffect(() => {
+      if (notifications.length > 0) {
+         setActiveNotification(notifications[0]);
+      }
+   }, [notifications])
+      
+
+  
 
 
    return (
       <div>
-      {showNotification && (
-         <Snackbar
-            open={showNotification}
-            onClose={handleSnackbarClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{width: '100%', padding: '50px'}}
-        >
-          <Alert 
-          onClose={handleSnackbarClose}
-          severity="success"
-          variant="filled"
-          sx={{width:'100%'}}
-          >
-          {`You have a new reservation for ${currentNotification.item_id}`}
-          </Alert>
-        </Snackbar>
-      )}
-  </div>
+         {notifications.map(notification => (
+            <Snackbar
+               key={notification.item_id}
+               open={true}
+               onClose={() => {handleSnackBarClose(notification)}}
+               anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+               <Alert variant="filled" severity="success" onClose={() => {handleSnackBarClose(notification)}}>
+                  {`You have a new reservation for ${notification.item.item_name}`}
+               </Alert>
+            </Snackbar>
+         ))}
+      </div>
    );
 }
 
