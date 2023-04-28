@@ -21,14 +21,14 @@ function Home() {
             <h2>Welcome to Recycling App</h2>
          </div>
          <div className='grid-container-home'>
-            <Card className="grid-item" elevation={3} component={Link} to='/login'>
+            <Card className="grid-item" elevation={3} style={{backgroundColor: '#7AE582'}} component={Link} to='/login'>
                <CardActionArea>
                   <CardContent>
                      <Typography variant="h5">LOGIN</Typography>
                   </CardContent>
                </CardActionArea>
             </Card>
-            <Card className="grid-item" elevation={3} component={Link} to='/registration'>
+            <Card className="grid-item" elevation={3} style={{backgroundColor: '#7AE582'}} component={Link} to='/registration'>
                <CardActionArea>
                   <CardContent>
                      <Typography variant="h5">REGISTER</Typography>

@@ -37,7 +37,7 @@ function UserPage() {
          })
         
       let user = usersService.getUser()
-      console.log(user)
+      
       setUser(user)
       
       
@@ -73,7 +73,6 @@ function UserPage() {
       });
 
       Promise.all(promises).then(data => {
-         console.log(data);
          setUserReservations(data);
       }).catch(error => {
          console.log(error)
@@ -133,7 +132,8 @@ function UserPage() {
          <div className='userpage-child2'>
             <h3>Your reservations</h3>
                {reservationCards}
-         </div>                  
+         </div>   
+      <Notifications/>              
       </div>
    </div>
    )
