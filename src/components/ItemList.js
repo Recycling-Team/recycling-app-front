@@ -37,7 +37,7 @@ function ItemList() {
 
    // Maps fetched categories to Card component
    const categoryPapers = categories.map((category) => (
-      <Card key={category.category_id} elevation={3} className='grid-item'>
+      <Card key={category.category_id} elevation={3} className='grid-item' style={{backgroundColor: '#7AE582'}}>
          <CardActionArea>
             <CardContent onClick={() => setCategory(category)}>
                <Typography variant='h5'>{category.category}</Typography>

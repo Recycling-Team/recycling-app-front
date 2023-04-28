@@ -10,10 +10,10 @@ const Reserve =  (item, loggedUser)  => {
         
     }
     
-    console.log(newObject)
+    
     
     reservationsService
-        .update(newObject)
+        .update(newObject,item)
         .then(newObject =>{
             alert(`item ${item.item_name} reserved!`)
             console.log(newObject)
