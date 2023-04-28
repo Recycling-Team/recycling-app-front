@@ -13,7 +13,7 @@ const Reserve =  (item, loggedUser)  => {
     
     
     reservationsService
-        .update(newObject)
+        .update(newObject,item)
         .then(newObject =>{
             alert(`item ${item.item_name} reserved!`)
             console.log(newObject)
