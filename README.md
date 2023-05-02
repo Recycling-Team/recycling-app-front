@@ -1,54 +1,73 @@
-# Getting Started with project
+<div align="center">
+  <br>
+  <h1>Recycling App</h1>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template. Libraries we use [MUI-material](https://mui.com/material-ui/), [React-Router-Dom](https://www.npmjs.com/package/react-router-dom)
+## What is Recycling App?
 
-## Project hosted at:
+The Recycling app is a website where you can giveaway your unwanted belongings, also you can search for items yourself. You create an account and after that you can list a new item, find listed items and reserve items for pick-up. 
 
-[Front-end](https://blue-sand-0b2fc2d03.2.azurestaticapps.net/)
+Recycling App is built with:
 
-## Available Scripts
+* [React.js](https://react.dev/)<br>
+* [MUI-material](https://mui.com/)<br>
+* [Axios](https://axios-http.com/)<br>
+* [React-router](https://reactrouter.com/en/main)<br>
+* [Date-fns](https://date-fns.org/)<br>
+* [Dayjs](https://day.js.org/)<br>
 
-In the project directory, you can run:
+## Backend
 
-### `npm install`
+Recycling App uses Azure Functions as backend. You can find the documentation and readme about the backend here:
 
-Install packages and dependencies.
+https://github.com/Recycling-Team/recycling-app-back
 
-### `npm start`
+## CI/CD
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Recycling App](https://blue-sand-0b2fc2d03.2.azurestaticapps.net/) is deployed as a Static Web App in Azure and Github Actions is used for Continuous Integration and Continuous Deployment through a pipeline between master repository and Static Web App.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Requirements
 
-### `npm test`
+[Node.js](https://nodejs.org/en)
+<br>
+[Git](https://git-scm.com/downloads)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting started
 
-### `npm run build`
+1. Clone this repository to your local machine
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone https://github.com/Recycling-Team/recycling-app-front.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install packages and dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm install
+```
 
-### `npm run eject`
+3. Run locally 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Preview
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Login](https://i.ibb.co/MBVsb3F/login.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Login, or register a new user.
 
-## Learn More
+![Create-a-listing](https://i.ibb.co/wcrVqDg/Create-a-listing.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create a listing for your unwanted item.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Itemlist](https://i.ibb.co/vj83hJc/itemlist.png)
+
+Browse the items or items by category.
+
+![UserPage](https://i.ibb.co/Ct91dbB/userpage.png)
+
+See all of your listed items and reservations.
+
+
