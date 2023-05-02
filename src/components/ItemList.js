@@ -69,9 +69,7 @@ function ItemList() {
       </Card>
    ));
 
-    const handleChange = (event) => {
-      console.log(event.target.value);
-      }
+    
 
    
    return (

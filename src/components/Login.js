@@ -49,7 +49,7 @@ function Login() {
 
   
    return(
-      <div >
+      <div className="homebody">
          <h1>Login</h1>
          <Notification text={notification} status={status}/>
          <form onSubmit={handleSubmit}>

@@ -16,6 +16,7 @@ function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
    const [user, setUser] = useState(0)
+   const [loggedUser, setLoggedUser] = useState([]);
    const [startTime, setStartTime] = useState(null);
    const [endTime, setEndTime] = useState(null);
    const [item, setItem ] = useState({
@@ -44,6 +45,7 @@ function CreateForm() {
         
       let user = usersService.getUser()
       setUser(user)
+      setLoggedUser(user)
       setItem((prevItem) => ({
          ...prevItem,
          user: user.user_id,
@@ -99,14 +101,14 @@ function CreateForm() {
       setItem({...item, [event.target.name]: event.target.value});
   };
 
-  if (!user.user_id) {
+  if (!loggedUser.user_id) {
       return <div className='homebody'>You need to login to create a listing</div>;
    }
 
    return(
       <div className="homebody">
             <Header text='Create a listing'/>
-            <form style={{backgroundColor: 'lightgreen', padding: '30px'}} onSubmit={handleSubmit}>
+            <form style={{backgroundColor: 'lightgreen', padding: '30px', borderRadius: '10px'}} onSubmit={handleSubmit}>
                 <Text text='Item name:'/>
                 <input 
                     id='item_name' 

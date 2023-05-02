@@ -6,11 +6,11 @@ import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
 import Text from './Text.js'
 import Notifications from './Notifications';
 import { Card, CardActionArea, CardContent, Typography, Button } from "@mui/material";
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 function UserPage() {
-
+   
    const [user, setUser] = useState('');
    const [users, setUsers] = useState([]);
    const [items, setItems] = useState([]);
@@ -28,27 +28,10 @@ function UserPage() {
             console.log(error)
          })
       
-      /*usersService
-         .getAll()
-         .then(data => {
-            setUsers(data)
-         })
-         .catch(error => {
-            console.log(error)
-         })*/
         
       let user = usersService.getUser()
       setUser(user)
       
-      
-      /*reservationsService
-         .getAll()
-         .then(data => {
-            setAllReservations(data)
-         })
-         .catch(error => {
-            console.log(error)
-         })*/
 
       reservationsService
          .reservationsByUser()
@@ -60,11 +43,7 @@ function UserPage() {
          })
       }, [])
 
-   /*useEffect(() => {
-      const filteredItems = items.filter(item => item.user === user.user_id);
-      setUserItems(filteredItems);
-   }, [user, items])*/
-   
+  
    useEffect(() => {
       const promises = reservations.map(async reservation => {
          const response = await fetch(`https://recycle-app-back-92873459875.azurewebsites.net/api/item-by-item_id?item_id=${reservation.item_id}`);
@@ -83,6 +62,10 @@ function UserPage() {
       return <div className='homebody'>You must login to see User page.</div>;
    }
 
+   const handleLogout = () => {
+      usersService.setUser('');
+      
+   }
 
    const itemCards = items.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}  >
@@ -121,7 +104,7 @@ function UserPage() {
    //<Notifications user={user} items={userItems}/>
    return (
    <div className='homebody'>
-      <h1>Welcome {user.username}</h1>
+      <h1>Welcome {user.username}</h1><Link to="/"><button onClick={handleLogout} style={{backgroundColor: 'red', color: 'white'}}>LogOut</button></Link>
       <div className="userpage-container">
          
          <div className='userpage-child1'>
