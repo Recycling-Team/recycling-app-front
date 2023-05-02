@@ -7,6 +7,8 @@
 
 The Recycling app is a website where you can giveaway your unwanted belongings, also you can search for items yourself. You create an account and after that you can list a new item, find listed items and reserve items for pick-up. 
 
+Hosted at: [Recycling App](https://blue-sand-0b2fc2d03.2.azurestaticapps.net/)
+
 Recycling App is built with:
 
 * [React.js](https://react.dev/)<br>
@@ -70,4 +72,8 @@ Browse the items or items by category.
 
 See all of your listed items and reservations.
 
+## Known bugs
+
+* On User-page the users items doesn't render without refreshing the page and it might show earlier users items if earlier user doesn't logout correctly.
+* Not mobile friendly. No media queries etc.
 
