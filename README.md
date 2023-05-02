@@ -54,7 +54,7 @@ npm start
 
 ## Preview
 
-![Login](https://i.ibb.co/MBVsb3F/login.png)
+![Login](https://i.ibb.co/gDhjT8N/homepage.png)
 
 Login, or register a new user.
 
