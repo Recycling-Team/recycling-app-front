@@ -49,8 +49,8 @@ function Login() {
 
   
    return(
-      <div className="homebody">
-         <Header text="Log in" />
+      <div >
+         <h1>Login</h1>
          <Notification text={notification} status={status}/>
          <form onSubmit={handleSubmit}>
             <Text text='Username:'/>

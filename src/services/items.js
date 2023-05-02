@@ -14,6 +14,10 @@ const addItem = newObject => {
     const request = axios.post(`${baseUrl}/add-item`, newObject)
     return request.then(response => response.data)
 }
+const getItem = (id) => {
+    const request = axios.get(`${baseUrl}/item-by-item_id?item_id=${id}`)
+    return request.then(response => response.data)
+}
 
 const itemsByUser = () => {
     const request = axios.get(`${baseUrl}/ItembyUser?user=${user.user_id}`)
@@ -32,5 +36,6 @@ export default {
     getAll,
     addItem,
     deleteItem,
+    getItem,
     itemsByUser
 }

@@ -88,7 +88,7 @@
     border: 1px solid black;
     margin: 10px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 200px;
     width: 300px;
     
@@ -130,3 +130,39 @@
   }
 
  
+
+  .reservations {
+justify-content: center;
+display: grid;
+
+  }
+
+  .wrapper {
+    padding: 50px;
+    display: flex; 
+    justify-content: center; 
+    
+  }
+  
+  .left-div, .right-div {
+    width: 600px; 
+    padding: 10px; 
+    box-sizing: border-box; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .left-div {
+    background-color: lightgreen; 
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    
+  }
+  
+  .right-div {
+    display: flex;
+    background-color: lightgreen; 
+    justify-content: center;
+    align-items: center;
+  }

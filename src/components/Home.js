@@ -2,6 +2,7 @@ import { Button, Stack, Paper, Typography, Card, CardActionArea, CardContent } f
 import React from "react";
 import { useState } from 'react'
 import { Link } from "react-router-dom";
+import Login from "./Login";
 
 
 
@@ -16,25 +17,16 @@ function Home() {
     };*/
 
    return(
-      <div className='homebody'>
-         <div className="homebody">
-            <h2>Welcome to Recycling App</h2>
+      <div className='wrapper'>
+         <div className="left-div">
+            <h1>Welcome to Recycling App</h1>
+            <p style={{fontSize: '20px'}}>The Recycling app is a website where you can giveaway your unwanted belongings, also you can search for items yourself. </p>
+            <p style={{fontSize: '20px'}}>
+            You create an account and after that you can list a new item, find listed items and reserve items for pick-up.  
+            </p>
          </div>
-         <div className='grid-container-home'>
-            <Card className="grid-item" elevation={3} style={{backgroundColor: '#7AE582'}} component={Link} to='/login'>
-               <CardActionArea>
-                  <CardContent>
-                     <Typography variant="h5">LOGIN</Typography>
-                  </CardContent>
-               </CardActionArea>
-            </Card>
-            <Card className="grid-item" elevation={3} style={{backgroundColor: '#7AE582'}} component={Link} to='/registration'>
-               <CardActionArea>
-                  <CardContent>
-                     <Typography variant="h5">REGISTER</Typography>
-                  </CardContent>
-               </CardActionArea>
-            </Card>
+         <div className="right-div">
+            <Login/>
          </div>
       </div>
       );
