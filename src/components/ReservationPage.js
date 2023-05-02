@@ -11,13 +11,11 @@ function ReservationPage() {
    const [isLoading, setIsLoading] = useState(true);
    const { itemId } = useParams();
  
+ 
    useEffect(() => {
-     console.log("Fetching user data...");
-     usersService.getUser().then(data => {
-       console.log("User data fetched successfully.");
-       setUser(data);
-      });
-     }, []);
+   let user = usersService.getUser()
+   setUser(user)
+}, []);
  
      useEffect(() => {
       console.log("Fetching item data...");

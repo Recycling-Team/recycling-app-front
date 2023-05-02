@@ -21,7 +21,7 @@ function Login() {
             .login(user)
             .then(data => {
                   usersService
-                     .set(data)
+                     .setUser(data)
                   setNotification(`Welcome ${user}!`)
                   setStatus(true)
             })

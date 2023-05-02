@@ -15,11 +15,11 @@ import usersService from '../services/users'
 function CreateForm() {
    const [categories, setCategories] = useState([]);
    const [conditions, setConditions] = useState([]);
-   const [loggedUser, setLoggedUser] = useState(0)
+   const [user, setUser] = useState(0)
    const [startTime, setStartTime] = useState(null);
    const [endTime, setEndTime] = useState(null);
    const [item, setItem ] = useState({
-      item_name:'', condition:'', description: '', available: 'Yes', category:'', user: loggedUser, pick_time: null
+      item_name:'', condition:'', description: '', available: 'True', category:'', user: user.user_id, pick_time: null
    });
 
    //fetch categories and conditions data from server
@@ -41,27 +41,18 @@ function CreateForm() {
          .catch(error => {
             console.log(error)
          })
-         
-      usersService
-         .getUser()
-         .then(data => {
-            setLoggedUser(data.user_id)
-            setItem((prevItem) => ({
-               ...prevItem,
-               user: data.user_id,
-            }));
-         })
-         .catch(error => {
-            console.log(error)
-            setLoggedUser({
-               user_id: 0,
-               username: 'null'
-            })
-         })
+        
+      let user = usersService.getUser()
+      setUser(user)
+      setItem((prevItem) => ({
+         ...prevItem,
+         user: user.user_id,
+      }))
    }, [])
-   
+
    const handleChange = (event) => {
       const { name, value } = event.target;
+      console.log(user)
       setItem((prevItem) => ({
          ...prevItem,
          [name]: value,
@@ -89,7 +80,7 @@ function CreateForm() {
       saveItem(item);
       event.preventDefault();
       setItem({
-          item_name:'', condition:'', description: '', available: 'Yes', category:'', message:'', user: loggedUser, pick_time: null
+          item_name:'', condition:'', description: '', available: 'True', category:'', message:'', user: user.user_id, pick_time: null
       })
    }
 
@@ -108,7 +99,7 @@ function CreateForm() {
       setItem({...item, [event.target.name]: event.target.value});
   };
 
-  if (!loggedUser) {
+  if (!user.user_id) {
       return <div className='homebody'>You need to login to create a listing</div>;
    }
 
@@ -185,10 +176,10 @@ function CreateForm() {
                         <MenuItem key={category.category_id} value={category.category_id}>{category.category}</MenuItem>
                      ))}
                   </Select>
-                </label>
+               </label>
                 <br></br>
                 <Text text='Choose Time' />
-<label style={{ display: 'flex', alignItems: 'center' }}>
+                <label style={{ display: 'flex', alignItems: 'center' }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                    <TimePicker 
                    id='pick_time'
@@ -207,7 +198,7 @@ function CreateForm() {
                    format="HH:mm"
                    />
                   </LocalizationProvider>
-</label>
+                </label>
 
                   <br></br>
                
