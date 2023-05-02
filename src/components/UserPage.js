@@ -6,6 +6,7 @@ import { Alert, MenuItem, Select, Snackbar } from '@mui/material';
 import Text from './Text.js'
 import Notifications from './Notifications';
 import { Card, CardActionArea, CardContent, Typography, Button } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 
 function UserPage() {
@@ -83,7 +84,6 @@ function UserPage() {
       return <div className='homebody'>You must login to see User page.</div>;
    }
 
-   
 
    const itemCards = items.map((item) =>(
       <Card className='card' key={item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}  >
@@ -102,18 +102,20 @@ function UserPage() {
 
    const reservationCards = userReservations.map((reservation) =>(
       <Card className='card' key={reservation.item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}>
-         <CardActionArea>
+        <Link to={`/reservations/${reservation.item.item_id}`}>
+          <CardActionArea>
             <CardContent>
-               <Typography>Name: {reservation.user_id}</Typography>
-               <Typography>Name: {reservation.item.item_name}</Typography>
-               <Typography>Description: {reservation.item.description}</Typography>
-               <Typography>Condition: {reservation.item.condition === 1 ? 'Good' : reservation.item.condition === 2 ? 'Average' : 'Bad'}</Typography>
-               <Typography>Available: {reservation.item.available}</Typography>
-               <Typography>Message: {reservation.item.message}</Typography>
+              <Typography color="black">Name: {reservation.user_id}</Typography>
+              <Typography color="black">Name: {reservation.item.item_name}</Typography>
+              <Typography color="black">Description: {reservation.item.description}</Typography>
+              <Typography color="black">Condition: {reservation.item.condition === 1 ? 'Good' : reservation.item.condition === 2 ? 'Average' : 'Bad'}</Typography>
+              <Typography color="black">Available: {reservation.item.available}</Typography>
+              <Typography color="black">Message: {reservation.item.message}</Typography>
             </CardContent>
-         </CardActionArea>
+          </CardActionArea>
+        </Link>
       </Card>
-   ))
+    ))
 
 
     
