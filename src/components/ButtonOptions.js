@@ -9,6 +9,7 @@ const ButtonOptions = ({ item, loggedUser}) => {
 
     const handleReservation = (itemId) => {
       navigate(`/reservations/${itemId}`);
+      Reserve(item, loggedUser);
     };
 
     if (loggedUser === undefined ) {
