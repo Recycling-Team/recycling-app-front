@@ -107,7 +107,7 @@ function CreateForm() {
       <div className="homebody">
             <Header text='Create a listing'/>
             <form style={{backgroundColor: 'lightgreen', padding: '30px'}} onSubmit={handleSubmit}>
-                <Text text='Name:'/>
+                <Text text='Item name:'/>
                 <input 
                     id='item_name' 
                     name='item_name' 
@@ -127,7 +127,7 @@ function CreateForm() {
                     style={{ width: '60%', padding: '10px', border: '1px solid darkgrey' }} 
                 />
                <label>
-                <Text text='Choose condition:' />
+                <Text text='Choose the items condition:' />
                   <Select 
                      className='dropdown'
                      variant="outlined"
@@ -181,7 +181,7 @@ function CreateForm() {
                   </Select>
                </label>
                 <br></br>
-                <Text text='Choose Pick-up Time:' />
+                <Text text='Choose a pick-up time: (Time window for item to be picked up)' />
                 <label style={{ display: 'flex', alignItems: 'center' }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                    <TimePicker 
@@ -207,7 +207,7 @@ function CreateForm() {
 
                   <br></br>
                
-                  <Text text='Message:' />
+                  <Text text='Message for collector:' />
                   <textarea
                  id='message'
                  name='message'
