@@ -42,7 +42,7 @@ function ReservationPage() {
       <div className="reservations">
         <h1 style={{ textAlign: 'center' }}>{user.username} your reservation:</h1>
         {item.map((itemData, index) => (
-          <Card key={index} sx={{ maxWidth: 500 }}>
+          <Card className='card' key={index} sx={{ maxWidth: 500 }} style={{backgroundColor: '#7AE582'}}>
             <CardActionArea>
               <CardContent sx={{ padding: 4 }}>
                 <Typography variant="h5" component="h2" gutterBottom>

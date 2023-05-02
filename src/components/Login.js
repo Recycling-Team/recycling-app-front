@@ -49,7 +49,7 @@ function Login() {
   
    return(
       <div >
-         <Header text="Log in" />
+         <h1>Login</h1>
          <Notification text={notification} status={status}/>
          <form onSubmit={handleSubmit}>
             <Text text='Username:'/>

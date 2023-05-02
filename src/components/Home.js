@@ -19,8 +19,11 @@ function Home() {
    return(
       <div className='wrapper'>
          <div className="left-div">
-            <h2>Welcome to Recycling App</h2>
-            <p>The Recycling app is a website where you can giveaway your unwanted belongings, also you can search for items yourself. You create an account and after that you can list a new item, find listed items and reserve items for pick-up.</p>
+            <h1>Welcome to Recycling App</h1>
+            <p style={{fontSize: '20px'}}>The Recycling app is a website where you can giveaway your unwanted belongings, also you can search for items yourself. </p>
+            <p style={{fontSize: '20px'}}>
+            You create an account and after that you can list a new item, find listed items and reserve items for pick-up.  
+            </p>
          </div>
          <div className="right-div">
             <Login/>

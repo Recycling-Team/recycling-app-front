@@ -101,7 +101,7 @@ function UserPage() {
 
    const reservationCards = userReservations.map((reservation) =>(
       <Card className='card' key={reservation.item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}>
-        <Link to={`/reservations/${reservation.item.item_id}`}>
+        <Link style={{textDecoration: 'none'}} to={`/reservations/${reservation.item.item_id}`}>
           <CardActionArea>
             <CardContent>
               <Typography color="black">Name: {reservation.user_id}</Typography>

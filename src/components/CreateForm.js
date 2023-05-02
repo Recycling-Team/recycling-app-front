@@ -106,8 +106,8 @@ function CreateForm() {
    return(
       <div className="homebody">
             <Header text='Create a listing'/>
-            <form onSubmit={handleSubmit}>
-                <Text text='Name'/>
+            <form style={{backgroundColor: 'lightgreen', padding: '30px'}} onSubmit={handleSubmit}>
+                <Text text='Name:'/>
                 <input 
                     id='item_name' 
                     name='item_name' 
@@ -115,18 +115,19 @@ function CreateForm() {
                     value={item.item_name} 
                     onChange={e=>handleChange(e)}
                 />
-                <Text text='Description' />
+                <Text text='Description:' />
                 <textarea
                     id='description'
                     name='description'
                     type='text'
+                    placeholder='Describe the item'
                     rows={4}
                     value={item.description}
                     onChange={e => handleChange(e)}
                     style={{ width: '60%', padding: '10px', border: '1px solid darkgrey' }} 
                 />
                <label>
-                <Text text='Choose condition' />
+                <Text text='Choose condition:' />
                   <Select 
                      className='dropdown'
                      variant="outlined"
@@ -136,6 +137,7 @@ function CreateForm() {
                         marginRight: 15,
                         border: "1px solid darkgrey",
                         color: "black",
+                        backgroundColor: 'whitesmoke'
                      }}
                      id='condition' 
                      name='condition' 
@@ -153,7 +155,7 @@ function CreateForm() {
                 <br></br>
                 <label>
             
-                <Text text='Choose a category' />
+                <Text text='Choose a category:' />
                   <Select 
                      className='dropdown'
                      variant="outlined"
@@ -163,6 +165,7 @@ function CreateForm() {
                         marginRight: 15,
                         border: "1px solid darkgrey",
                         color: "black",
+                        backgroundColor: 'whitesmoke'
                      }}
                      id='category' 
                      name='category' 
@@ -178,7 +181,7 @@ function CreateForm() {
                   </Select>
                </label>
                 <br></br>
-                <Text text='Choose Time' />
+                <Text text='Choose Pick-up Time:' />
                 <label style={{ display: 'flex', alignItems: 'center' }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                    <TimePicker 
@@ -186,6 +189,7 @@ function CreateForm() {
                    value={startTime}
                    onChange={handleStartTimeChange}
                    format="HH:mm"
+                   sx={{backgroundColor: 'whitesmoke'}}
                    />
                   </LocalizationProvider>
                   <span style={{ margin: '0 10px' }}>-</span>
@@ -196,16 +200,18 @@ function CreateForm() {
                    value={endTime}
                    onChange={handleEndTimeChange}
                    format="HH:mm"
+                   sx={{backgroundColor: 'whitesmoke'}}
                    />
                   </LocalizationProvider>
                 </label>
 
                   <br></br>
                
-                  <Text text='Message' />
+                  <Text text='Message:' />
                   <textarea
                  id='message'
                  name='message'
+                 placeholder='Phone number, address etc.'
                 value={item.message}
                 onChange={e=>handleChange(e)}
                 rows={5} 
