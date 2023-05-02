@@ -1,9 +1,15 @@
 import { Button } from "@mui/material";
 import Reserve from './Reserve'
 import DeleteItem from './DeleteItem'
-
+import { useNavigate } from 'react-router-dom';
 
 const ButtonOptions = ({ item, loggedUser}) => {
+
+    const navigate = useNavigate();
+
+    const handleReservation = (itemId) => {
+      navigate(`/reservations/${itemId}`);
+    };
 
     if (loggedUser === undefined ) {
         return
@@ -13,13 +19,17 @@ const ButtonOptions = ({ item, loggedUser}) => {
     }
     if (item.user !== loggedUser) {
         return (
-            <Button variant="contained" onClick={() => Reserve(item, loggedUser)}>Reserve</Button>
-        )
-    } else {
+          <Button variant="contained" onClick={() => handleReservation(item.item_id)}>
+            Reserve
+          </Button>
+        );
+      } else {
         return (
-            <Button variant="contained" color="error" onClick={() => DeleteItem(item)}>Delete</Button>
-        )
-    }
-}
-
+          <Button variant="contained" color="error" onClick={() => DeleteItem(item)}>
+            Delete
+          </Button>
+        );
+      }
+    };
+    
 export default ButtonOptions

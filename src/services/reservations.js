@@ -14,7 +14,20 @@ const getAll = () => {
     return request.then(response => response.data)
  }
 
+ const getReservationsByItemId = (itemId, userId) => {
+    const request = axios.get(`${baseUrl}/reservation-by-item_id`, {
+      params: {
+        item_id: itemId,
+        user_id: userId
+      }
+    })
+    return request.then(response => response.data)
+  }
+
+  
+
 export default {
     update,
-    getAll
+    getAll,
+    getReservationsByItemId 
 }

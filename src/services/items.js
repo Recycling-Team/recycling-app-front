@@ -13,6 +13,10 @@ const addItem = newObject => {
     const request = axios.post(`${baseUrl}/add-item`, newObject)
     return request.then(response => response.data)
 }
+const getItem = (id) => {
+    const request = axios.get(`${baseUrl}/item-by-item_id?item_id=${id}`)
+    return request.then(response => response.data)
+}
 
 const deleteItem = itemId => {
     //const request = axios.delete(`${baseUrl}/${itemId}`)
@@ -25,5 +29,6 @@ const deleteItem = itemId => {
 export default {
     getAll,
     addItem,
-    deleteItem
+    deleteItem,
+    getItem
 }
