@@ -89,6 +89,9 @@
     margin: 10px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 200px;
+    width: 300px;
+    
   }
   
   .logolink {
@@ -97,6 +100,36 @@
     color: #000;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
+
+ /* .userpage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2px;
+    justify-items: center;
+    align-items: start;
+  }*/
+
+  .userpage-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+    margin: 0 auto;
+    width: 800px
+  }
+
+  .userpage-child1 {
+    
+    height: 250px;
+    width: 200px;
+  }
+
+   .userpage-child2 {
+   
+    height: 250px;
+    width: 200px;
+  }
+
+ 
 
   .reservations {
 justify-content: center;
