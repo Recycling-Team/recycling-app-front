@@ -2,16 +2,18 @@ import React from "react";
 import { useState } from 'react'
 import Text from './Text'
 import Header from './Header'
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import usersService from '../services/users'
 import { Button } from "@mui/material";
 import Notification from './Notification'
+import { useNavigate } from "react-router-dom"
 
 function Login() {
 
    const [user, setUser] = useState('')
    const [notification, setNotification] = useState('')
    const [status, setStatus] = useState(null)
+   const navigate = useNavigate()
 
    const handleSubmit = (event) => {
       event.preventDefault();
@@ -22,8 +24,7 @@ function Login() {
             .then(data => {
                   usersService
                      .setUser(data)
-                  setNotification(`Welcome ${user}!`)
-                  setStatus(true)
+                  navigate("/user")
             })
             .catch(error => {
                console.log(error)
@@ -65,13 +66,13 @@ function Login() {
             <Button variant="contained" type="submit">Log in</Button>
          </form>
          <Text text="Don't have a user yet?"/>
-         <NavLink to="/Registration">
-         <Button variant="contained" color="success" size="small">Register</Button>
-         </NavLink>
+         <Link to="/Registration">
+            <Button variant="contained" color="success" size="small">Register</Button>
+         </Link>
          <br/>
-         <NavLink to="/">
-         <Button variant="contained" color="error" size="small">Go back</Button>
-         </NavLink>
+         <Link to="/">
+            <Button variant="contained" color="error" size="small">Go back</Button>
+         </Link>
       </div>
    );
 }
