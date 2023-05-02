@@ -136,3 +136,23 @@ justify-content: center;
 display: grid;
 
   }
+
+  .wrapper {
+    padding: 50px;
+    display: flex; /* use flexbox */
+    justify-content: space-between; /* align items with space between */
+  }
+  
+  .left-div, .right-div {
+    flex-basis: 50%; /* set a flex basis of 50% for each div */
+    padding: 10px; /* add some padding */
+    box-sizing: border-box; /* include padding in the width */
+  }
+  
+  .left-div {
+    background-color: lightgreen; 
+  }
+  
+  .right-div {
+    background-color: lightgreen; 
+  }

@@ -48,7 +48,7 @@ function Login() {
 
   
    return(
-      <div className="homebody">
+      <div >
          <Header text="Log in" />
          <Notification text={notification} status={status}/>
          <form onSubmit={handleSubmit}>
@@ -68,6 +68,7 @@ function Login() {
          <NavLink to="/Registration">
          <Button variant="contained" color="success" size="small">Register</Button>
          </NavLink>
+         <br/>
          <br/>
          <NavLink to="/">
          <Button variant="contained" color="error" size="small">Go back</Button>

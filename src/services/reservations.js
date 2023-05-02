@@ -10,7 +10,6 @@ let user = usersService.getUser()
     
 
 const update = (newObject,item) => {
-    console.log(item);
     const request = axios.post(`${baseUrl}/addreservation`, newObject)
     const request2 = axios.post(`${baseUrl}/update-item`, item)
     return request.then(response => console.log(response.data))
@@ -22,7 +21,6 @@ const getAll = () => {
  }
 
  const getUnnotifiedReservations = () => {
-    console.log(user.user_id);
     const request = axios.get(`${baseUrl}/unnotified-reservations?user_id=${user.user_id}`)
     return request.then(response => response.data)
  }

@@ -27,17 +27,16 @@ function UserPage() {
             console.log(error)
          })
       
-      usersService
+      /*usersService
          .getAll()
          .then(data => {
             setUsers(data)
          })
          .catch(error => {
             console.log(error)
-         })
+         })*/
         
       let user = usersService.getUser()
-      
       setUser(user)
       
       
