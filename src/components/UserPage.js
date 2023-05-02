@@ -88,7 +88,6 @@ function UserPage() {
       <Card className='card' key={item.item_id} elevation={2} style={{backgroundColor: '#7AE582'}}  >
          <CardActionArea>
             <CardContent>
-               <Typography>ID: {item.user}</Typography>
                <Typography>Name: {item.item_name}</Typography>
                <Typography>Description: {item.description}</Typography>
                <Typography>Condition: {item.condition === 1 ? 'Good' : item.condition === 2 ? 'Average' : 'Bad'}</Typography>
@@ -104,7 +103,6 @@ function UserPage() {
         <Link style={{textDecoration: 'none'}} to={`/reservations/${reservation.item.item_id}`}>
           <CardActionArea>
             <CardContent>
-              <Typography color="black">Name: {reservation.user_id}</Typography>
               <Typography color="black">Name: {reservation.item.item_name}</Typography>
               <Typography color="black">Description: {reservation.item.description}</Typography>
               <Typography color="black">Condition: {reservation.item.condition === 1 ? 'Good' : reservation.item.condition === 2 ? 'Average' : 'Bad'}</Typography>
